@@ -169,7 +169,12 @@ def categorize_comments(comments):
         "please consider", "urge you to", "ask that you", "request that",
         "important to", "need access", "patients need", "please make",
         "hope you", "would like to ask", "compounding pharmacy", "safer and obtainable",
-        "life changing", "changed my life", "helped me", "it works", "it has worked"
+        "life changing", "changed my life", "helped me", "it works", "it has worked",
+        "i am happy", "i'm happy", "happy about", "with my doctor", "doctor's supervision",
+        "under doctor", "physician supervised", "has helped", "have benefited",
+        "positive experience", "highly recommend", "strongly support", "in favor",
+        "grateful", "thank you for", "i have been using", "i have used",
+        "has improved", "has changed", "has transformed", "works well"
     ]
 
     PEPTIDE_KEYWORDS = {}
