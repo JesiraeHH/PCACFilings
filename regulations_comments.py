@@ -373,9 +373,9 @@ def generate_html(comments, categorized):
   .header .meta-item {{ background: rgba(255,255,255,0.15); padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.85rem; }}
   .container {{ max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }}
   .charts-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }}
-  .chart-card {{ background: white; border-radius: 12px; padding: 1.5rem 1.5rem 1.5rem 2.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); overflow: visible; }}
+  .chart-card {{ background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }}
   .chart-card h2 {{ font-size: 1rem; color: #636e72; margin-bottom: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }}
-  .chart-wrapper {{ position: relative; min-height: 200px; }}
+  .chart-wrapper {{ position: relative; height: 380px; }}
   .timeline-wrapper {{ position: relative; height: 200px; }}
   .full-width {{ grid-column: 1 / -1; }}
   .section-title {{ font-size: 1.25rem; font-weight: 700; margin: 2rem 0 1rem; color: #2d3436; }}
@@ -425,7 +425,7 @@ def generate_html(comments, categorized):
   <div class="charts-grid">
     <div class="chart-card">
       <h2>Comments by Category</h2>
-      <div class="chart-wrapper"><div id="catChart"></div></div>
+      <div class="chart-wrapper"><canvas id="catChart"></canvas></div>
     </div>
     <div class="chart-card">
       <h2>Sentiment Distribution</h2>
@@ -448,27 +448,38 @@ def generate_html(comments, categorized):
 </div>
 
 <script>
-// Category bar chart — rendered as plain HTML bars to avoid label clipping
-(function() {{
-  const labels = {json.dumps(cat_labels)};
-  const values = {json.dumps(cat_values)};
-  const colors = {json.dumps(colors[:len(cat_labels)])};
-  const max = Math.max(...values);
-  const container = document.getElementById('catChart');
-  container.innerHTML = '';
-  labels.forEach((label, i) => {{
-    const pct = Math.round((values[i] / max) * 100);
-    container.innerHTML += `
-      <div style="display:flex;align-items:center;margin-bottom:8px;gap:8px">
-        <div style="width:220px;font-size:12px;color:#636e72;text-align:right;flex-shrink:0">${{label}}</div>
-        <div style="flex:1;background:#f0f0f0;border-radius:4px;height:22px">
-          <div style="width:${{pct}}%;background:${{colors[i]}};height:22px;border-radius:4px;display:flex;align-items:center;padding-left:6px">
-            <span style="font-size:11px;color:white;font-weight:600">${{values[i]}}</span>
-          </div>
-        </div>
-      </div>`;
-  }});
-}})();
+// Category bar chart
+new Chart(document.getElementById('catChart'), {{
+  type: 'bar',
+  data: {{
+    labels: {json.dumps(cat_labels)},
+    datasets: [{{
+      data: {json.dumps(cat_values)},
+      backgroundColor: {json.dumps(colors[:len(cat_labels)])},
+      borderRadius: 5,
+    }}]
+  }},
+  options: {{
+    indexAxis: 'y',
+    plugins: {{ legend: {{ display: false }} }},
+    layout: {{ padding: {{ left: 0 }} }},
+    scales: {{
+      x: {{ grid: {{ display: false }}, ticks: {{ color: '#636e72' }} }},
+      y: {{
+        grid: {{ display: false }},
+        ticks: {{
+          color: '#636e72',
+          font: {{ size: 11 }},
+          autoSkip: false,
+          mirror: false,
+        }},
+        afterFit: (axis) => {{ axis.width = 340; }}
+      }}
+    }},
+    responsive: true,
+    maintainAspectRatio: false,
+  }}
+}});
 
 // Sentiment donut
 new Chart(document.getElementById('sentChart'), {{
