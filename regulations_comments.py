@@ -321,38 +321,25 @@ def generate_html(comments, categorized):
             </div>"""
         cards_html += "</div>"
 
-    # Build peptide spotlight section
-    peptide_spotlight_html = ""
-    for peptide in ["TB-500", "BPC-157"]:
-        peptide_comments = [e for e in enriched if peptide in (e.get("peptides") or [])]
-        if peptide_comments:
-            peptide_spotlight_html += f'<div class="peptide-section">'
-            peptide_spotlight_html += f'<h3>🔬 {peptide} — {len(peptide_comments)} comment(s) mentioning this peptide</h3>'
-            for item in peptide_comments:
-                comment_preview = (item.get("comment") or "")[:400]
-                if len(item.get("comment","")) > 400:
-                    comment_preview += "..."
-                org = item.get("organization") or ""
-                org_html = f'<span class="org">{org}</span> ' if org else ""
-                peptide_spotlight_html += f"""
-                <div class="comment-card" style="border-left-color:#e65100" onclick="toggleComment(this)">
-                  <div class="card-meta">
-                    <span class="comment-id">{item['id']}</span>
-                    {org_html}
-                    <span class="date">{item.get('posted_date','')}</span>
-                    {sentiment_badge(item.get('sentiment','neutral'))}
-                    <span class="peptide-tag">{peptide}</span>
-                    <span class="expand-hint">▼ click to expand</span>
-                  </div>
-                  <p class="comment-text preview-text">{comment_preview}</p>
-                  <p class="comment-text full-text" style="display:none">{(item.get('comment') or '')}</p>
-                  <div class="card-footer">
-                    <a href="https://www.regulations.gov/comment/{item['id']}" target="_blank" onclick="event.stopPropagation()" class="reg-link">View on regulations.gov ↗</a>
-                  </div>
-                </div>"""
-            peptide_spotlight_html += "</div>"
-    if not peptide_spotlight_html:
-        peptide_spotlight_html = '<div class="peptide-section"><h3>🔬 TB-500 &amp; BPC-157</h3><p>No comments specifically mentioning TB-500 or BPC-157 were found in this docket.</p></div>'
+    # Build peptide spotlight — summary only, no duplicate cards
+    tb_count = len([e for e in enriched if "TB-500" in (e.get("peptides") or [])])
+    bpc_count = len([e for e in enriched if "BPC-157" in (e.get("peptides") or [])])
+    peptide_spotlight_html = f"""
+    <div class="peptide-section">
+      <h3>🔬 Peptide Mentions in This Docket</h3>
+      <p style="font-size:0.9rem;color:#636e72;margin-bottom:0.75rem">Comments referencing specific peptides under review:</p>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
+        <div style="background:white;border-radius:8px;padding:0.75rem 1.25rem;border:1px solid #ffcc80">
+          <span style="font-size:1.5rem;font-weight:700;color:#e65100">{tb_count}</span>
+          <span style="font-size:0.9rem;color:#636e72;margin-left:0.5rem">comments mention <strong>TB-500</strong></span>
+        </div>
+        <div style="background:white;border-radius:8px;padding:0.75rem 1.25rem;border:1px solid #ffcc80">
+          <span style="font-size:1.5rem;font-weight:700;color:#e65100">{bpc_count}</span>
+          <span style="font-size:0.9rem;color:#636e72;margin-left:0.5rem">comments mention <strong>BPC-157</strong></span>
+        </div>
+      </div>
+      <p style="font-size:0.8rem;color:#b2bec3;margin-top:0.75rem">Search for "tb500" or "bpc-157" below to filter these comments.</p>
+    </div>"""
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
