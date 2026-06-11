@@ -387,7 +387,7 @@ def generate_html(comments, categorized):
   <div class="charts-grid">
     <div class="chart-card">
       <h2>Comments by Category</h2>
-      <div class="chart-wrapper"><canvas id="catChart"></canvas></div>
+      <div id="catChart"></div>
     </div>
     <div class="chart-card">
       <h2>Sentiment Distribution</h2>
@@ -409,38 +409,34 @@ def generate_html(comments, categorized):
 </div>
 
 <script>
-// Category bar chart
-new Chart(document.getElementById('catChart'), {{
-  type: 'bar',
-  data: {{
-    labels: {json.dumps(cat_labels)},
-    datasets: [{{
-      data: {json.dumps(cat_values)},
-      backgroundColor: {json.dumps(colors[:len(cat_labels)])},
-      borderRadius: 5,
-    }}]
-  }},
-  options: {{
-    indexAxis: 'y',
-    plugins: {{ legend: {{ display: false }} }},
-    scales: {{
-      x: {{ grid: {{ display: false }}, ticks: {{ color: '#636e72' }} }},
-      y: {{ grid: {{ display: false }}, ticks: {{ color: '#636e72', font: {{ size: 11 }} }} }}
-    }},
-    responsive: true,
-    maintainAspectRatio: false,
-    onClick: (evt, elements) => {{
-      if (elements.length > 0) {{
-        const idx = elements[0].index;
-        const el = document.getElementById('cat-' + idx);
-        if (el) el.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
-      }}
-    }},
-    onHover: (evt, elements) => {{
-      evt.native.target.style.cursor = elements.length > 0 ? 'pointer' : 'default';
-    }},
-  }}
-}});
+// Category chart — pure HTML bars, no clipping
+(function() {{
+  const labels = {json.dumps(cat_labels)};
+  const values = {json.dumps(cat_values)};
+  const clrs = {json.dumps(colors[:len(cat_labels)])};
+  const ids = {json.dumps([f"cat-{CATEGORIES.index(c)}" for c in cat_labels])};
+  const max = Math.max(...values);
+  const el = document.getElementById('catChart');
+  el.style.padding = '0.5rem 0';
+  labels.forEach((label, i) => {{
+    const pct = Math.round((values[i] / max) * 85);
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;align-items:center;margin-bottom:10px;gap:10px;cursor:pointer';
+    row.title = 'Click to jump to ' + label;
+    row.onclick = () => {{
+      const target = document.getElementById(ids[i]);
+      if (target) target.scrollIntoView({{behavior:'smooth', block:'start'}});
+    }};
+    row.innerHTML = `
+      <div style="width:200px;font-size:12px;color:#444;text-align:right;flex-shrink:0;padding-right:4px">${{label}}</div>
+      <div style="flex:1;background:#f0f0f0;border-radius:4px;height:24px;position:relative">
+        <div style="width:${{pct}}%;background:${{clrs[i]}};height:24px;border-radius:4px;min-width:24px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px">
+          <span style="font-size:11px;color:white;font-weight:700">${{values[i]}}</span>
+        </div>
+      </div>`;
+    el.appendChild(row);
+  }});
+}})();
 
 // Sentiment donut
 new Chart(document.getElementById('sentChart'), {{
