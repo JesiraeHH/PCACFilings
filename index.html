@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FDA-2025-N-6895 Public Comments Analysis</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f6fa; color: #2d3436; }
+  .header { background: linear-gradient(135deg, #1a237e 0%, #283593 100%); color: white; padding: 2rem; }
+  .header h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .header p { opacity: 0.85; font-size: 0.95rem; max-width: 800px; }
+  .header .meta { margin-top: 1rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .header .meta-item { background: rgba(255,255,255,0.15); padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.85rem; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+  .charts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+  .chart-card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  .chart-card h2 { font-size: 1rem; color: #636e72; margin-bottom: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+  .chart-wrapper { position: relative; height: 300px; }
+  .timeline-wrapper { position: relative; height: 200px; }
+  .full-width { grid-column: 1 / -1; }
+  .section-title { font-size: 1.25rem; font-weight: 700; margin: 2rem 0 1rem; color: #2d3436; }
+  .search-bar { margin-bottom: 1.5rem; }
+  .search-bar input { width: 100%; padding: 0.75rem 1rem; border: 1px solid #dfe6e9; border-radius: 8px; font-size: 0.95rem; outline: none; }
+  .search-bar input:focus { border-color: #1a237e; box-shadow: 0 0 0 3px rgba(26,35,126,0.1); }
+  .category-section { margin-bottom: 2rem; }
+  .cat-header { font-size: 1.1rem; font-weight: 700; color: #1a237e; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+  .count-badge { background: #1a237e; color: white; border-radius: 12px; padding: 2px 10px; font-size: 0.8rem; font-weight: 600; }
+  .comment-card { background: white; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 0.75rem; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border-left: 3px solid #1a237e; }
+  .card-meta { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.5rem; }
+  .comment-id { font-size: 0.75rem; color: #636e72; font-family: monospace; }
+  .org { font-size: 0.78rem; background: #e8eaf6; color: #283593; padding: 1px 7px; border-radius: 4px; font-weight: 600; }
+  .state { font-size: 0.78rem; background: #f3f4f6; color: #4b5563; padding: 1px 7px; border-radius: 4px; }
+  .date { font-size: 0.75rem; color: #b2bec3; margin-left: auto; }
+  .summary { font-size: 0.9rem; color: #2d3436; margin-bottom: 0.4rem; }
+  .comment-text { font-size: 0.82rem; color: #636e72; line-height: 1.5; margin-bottom: 0.5rem; }
+  .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .tag { font-size: 0.72rem; background: #f0f4ff; color: #1a237e; padding: 2px 8px; border-radius: 12px; border: 1px solid #c5cae9; }
+  .hidden { display: none !important; }
+  @media (max-width: 600px) { .header h1 { font-size: 1.1rem; } .charts-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>FDA-2025-N-6895 &mdash; Public Comments Analysis</h1>
+  <p>Pharmacy Compounding Advisory Committee: Bulk Drug Substances Nominated for the Section 503A List</p>
+  <div class="meta">
+    <div class="meta-item">📄 62 Total Comments</div>
+    <div class="meta-item">📅 Comment Period: Apr 16 – Jul 23, 2026</div>
+    <div class="meta-item">🏛 Agency: FDA / CDER</div>
+    <div class="meta-item">⚡ AI-Categorized with Claude</div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="charts-grid">
+    <div class="chart-card">
+      <h2>Comments by Category</h2>
+      <div class="chart-wrapper"><canvas id="catChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h2>Sentiment Distribution</h2>
+      <div class="chart-wrapper"><canvas id="sentChart"></canvas></div>
+    </div>
+    <div class="chart-card full-width">
+      <h2>Filing Timeline</h2>
+      <div class="timeline-wrapper"><canvas id="timelineChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="section-title">All Comments by Category</div>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search comments by keyword, organization, or ID..." oninput="filterComments()">
+  </div>
+  <div id="commentsContainer">
+    <div class="category-section" id="cat-0"><h3 class="cat-header">Patient Access & Medical Need <span class="count-badge">44</span></h3>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0002</span>
+                
+                <span class="date">2026-04-17</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>In the few short months that I have been on my peptide journey, my health and overall wellbeing has thrived. At the mome...</strong></p>
+              <p class="comment-text">In the few short months that I have been on my peptide journey, my health and overall wellbeing has thrived. At the moment I am sourcing my peptides from online sites. I had to resort to this because I was looking for anything that would help with my back pain and hormone issues that wasn&#39;t a co...</p>
+              <div class="tags"><span class="tag">Safety & Quality Concerns</span> <span class="tag">Specific Drug Substance Support</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0007</span>
+                <span class="state">TX</span>
+                <span class="date">2026-04-17</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>In the past year, I began taking terzepitude from a reputable compounding pharmacy in my state. My weight has gone from...</strong></p>
+              <p class="comment-text">In the past year, I began taking terzepitude from a reputable compounding pharmacy in my state. My weight has gone from 253 to 155, a loss of 98 pounds in a little over 12 months. I wS able to do this becuase I was paying about $150 per month; I would not have been able to pay over $1000 per month. ...</p>
+              <div class="tags"><span class="tag">Compounding Pharmacy Industry</span> <span class="tag">Safety & Quality Concerns</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0008</span>
+                
+                <span class="date">2026-04-17</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>Peptides have been a life changer! I&#39;m on GLP1, NAD+, from compound pharmacy. Ive lost weight, my hair is growing, m...</strong></p>
+              <p class="comment-text">Peptides have been a life changer! I&#39;m on GLP1, NAD+, from compound pharmacy. Ive lost weight, my hair is growing, my back pain is gone. Its a miracle. Please approve them and many more!</p>
+              <div class="tags"><span class="tag">Compounding Pharmacy Industry</span> <span class="tag">Safety & Quality Concerns</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0037</span>
+                <span class="state">NC</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>I got a severe sprained ankle training for a trail 100k ultramarathon. The race was 3 weeks away from the injury. I work...</strong></p>
+              <p class="comment-text">I got a severe sprained ankle training for a trail 100k ultramarathon. The race was 3 weeks away from the injury. I work in medicine and most friends and colleagues thought there was no chance id still be able to race. I decided to try a combo bp157 and tb500 peptide injection in the off chance it w...</p>
+              <div class="tags"><span class="tag">Scientific / Clinical Evidence</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0040</span>
+                
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>As a board-certified family physician well-trained in medicinal peptide therapy, I have observed over several years trem...</strong></p>
+              <p class="comment-text">As a board-certified family physician well-trained in medicinal peptide therapy, I have observed over several years tremendous clinical benefits in my patients with a wide range of diseases, including chronic allergic, autoimmune, inflammatory, endocrine, gastrointestinal, respiratory, neurological ...</p>
+              <div class="tags"><span class="tag">Safety & Quality Concerns</span> <span class="tag">Healthcare Provider Perspective</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0016</span>
+                <span class="state">CO</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#fff3cd;color:#856404;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">MIXED</span>
+              </div>
+              <p class="summary"><strong>I am happy about the potential change on the classification of certain peptides! I have been using, with my Doctor&#39;s...</strong></p>
+              <p class="comment-text">I am happy about the potential change on the classification of certain peptides! I have been using, with my Doctor&#39;s supervision, Klow Blend( KPV, GHK-CU, BPC157, TB500) for a year and 6 months on a cycle regimen. I also cycle CJC1295/ipamorelin and Cartalax. I am a healthy, fit, 62 yr female, 5...</p>
+              <div class="tags"><span class="tag">Safety & Quality Concerns</span> <span class="tag">Specific Drug Substance Support</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0027</span>
+                <span class="state">CA</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I&rsquo;ve used Tirzepatide, BPC-157, and Sermorelin and my life had categorically changed for the better. I&rsquo;m hea...</strong></p>
+              <p class="comment-text">I&rsquo;ve used Tirzepatide, BPC-157, and Sermorelin and my life had categorically changed for the better. I&rsquo;m healthier, sleep better, and stronger than ever before. Most importantly the good habits I&rsquo;ve changed during cycles have stuck with me during off cycles, meaning, with specific ...</p>
+              <div class="tags"><span class="tag">Specific Drug Substance Support</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0036</span>
+                
+                <span class="date">2026-04-24</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>My practicing prescribed BPC157/TB500 as I am recovering from mold toxicity/long covid. I am certain this peptide blend...</strong></p>
+              <p class="comment-text">My practicing prescribed BPC157/TB500 as I am recovering from mold toxicity/long covid. I am certain this peptide blend helped with my gut inflammation. I also pulled a muscle in my back leading to excruciating painful back spasms. I happened to be on peptide blend and my back was healed within 3-4 ...</p>
+              <div class="tags"></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0041</span>
+                
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>We appreciate the opportunity to provide input regarding the evaluation of bulk drug substances for inclusion on the Sec...</strong></p>
+              <p class="comment-text">We appreciate the opportunity to provide input regarding the evaluation of bulk drug substances for inclusion on the Section 503A Bulks List.<br/><br/>As a clinical organization focused on improving metabolic health outcomes, we work closely with patients who benefit from individualized, provider-di...</p>
+              <div class="tags"><span class="tag">Safety & Quality Concerns</span> <span class="tag">Specific Drug Substance Support</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0044</span>
+                
+                <span class="date">2026-04-24</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>About 3 years ago, I used a peptide called PDA (same as BPC-157) for continued pain from tendonitis in my elbow. This pa...</strong></p>
+              <p class="comment-text">About 3 years ago, I used a peptide called PDA (same as BPC-157) for continued pain from tendonitis in my elbow. This pain had caused me issues for several years. I saw improvement within 2 weeks of starting the peptide. By the end of the 25 days of the prescription (one injection per day), the pain...</p>
+              <div class="tags"><span class="tag">Safety & Quality Concerns</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0048</span>
+                
+                <span class="date">2026-04-29</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>My name is Jay, MSN, RN, PHN. I am a licensed registered nurse in the State of California with over 15 years of clinical...</strong></p>
+              <p class="comment-text">My name is Jay, MSN, RN, PHN. I am a licensed registered nurse in the State of California with over 15 years of clinical experience, including credentials as an LVN, ADN, and MSN. I currently serve as Director of Nursing for a Home Health agency where I oversee patient care protocols, clinical compl...</p>
+              <div class="tags"><span class="tag">Regulatory Process & FDA Authority</span> <span class="tag">Healthcare Provider Perspective</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0045</span>
+                <span class="state">NC</span>
+                <span class="date">2026-04-29</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>As a 74 year old female who has come late to the peptide party, I wish they had been available to me in my earlier decad...</strong></p>
+              <p class="comment-text">As a 74 year old female who has come late to the peptide party, I wish they had been available to me in my earlier decades. The short period of time that I have used several peptides have had a marked impact on my health. I&rsquo;ve lost weight that I have struggled with for 25 years, my joint healt...</p>
+              <div class="tags"><span class="tag">Specific Drug Substance Support</span> <span class="tag">Safety & Quality Concerns</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0051</span>
+                <span class="state">WA</span>
+                <span class="date">2026-05-29</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>Hello, I am respectfully requesting that you keep allowing individuals to have access to compounded GLP1 medications. Th...</strong></p>
+              <p class="comment-text">Hello, I am respectfully requesting that you keep allowing individuals to have access to compounded GLP1 medications. This medication has literally changed my life. I have lost over 90 pounds and my cholesterol, blood pressure and body pains have changed exponentially. Also, the effect this has had ...</p>
+              <div class="tags"><span class="tag">Economic & Market Impact</span> <span class="tag">Safety & Quality Concerns</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0003</span>
+                <span class="state">NJ</span>
+                <span class="date">2026-04-17</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I started peptides last August. I suffered daily with pain throughout my body. I has been in metformin for 20 years. I h...</strong></p>
+              <p class="comment-text">I started peptides last August. I suffered daily with pain throughout my body. I has been in metformin for 20 years. I had 12 surgeries due to connective tissue disease. Daily pain, daily fatigue. I was miserable. I started terzepitide and began adding in Bpc, copper, mots, ss31 cycling a few others...</p>
+              <div class="tags"><span class="tag">Specific Drug Substance Support</span> <span class="tag">Scientific / Clinical Evidence</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0004</span>
+                <span class="state">UT</span>
+                <span class="date">2026-04-17</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I depend on compounding pharmacies for my obesity treatment.  I cannot afford name brand medication and as my condition...</strong></p>
+              <p class="comment-text">I depend on compounding pharmacies for my obesity treatment.  I cannot afford name brand medication and as my condition is severe and debilitating,  I will be in need of glp1 medication for the duration of my life. Stopping compounding could halt access for millions who depend on this medication for...</p>
+              <div class="tags"><span class="tag">Compounding Pharmacy Industry</span> <span class="tag">Safety & Quality Concerns</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0039</span>
+                <span class="state">IL</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>There is a need for further study on the side effects of the use peptides for our muscles , the aging process etc.   One...</strong></p>
+              <p class="comment-text">There is a need for further study on the side effects of the use peptides for our muscles , the aging process etc.   One of the reasons that MAHA wants take the drug off the market, thus a further study on the effects of the human body.  </p>
+              <div class="tags"><span class="tag">Safety & Quality Concerns</span> <span class="tag">Scientific / Clinical Evidence</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0013</span>
+                <span class="state">TX</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>These substances should be added to the Section 503A Bulk Drug Substances List because they address legitimate clinical...</strong></p>
+              <p class="comment-text">These substances should be added to the Section 503A Bulk Drug Substances List because they address legitimate clinical needs where commercially available options may be limited, unavailable, or not suitable for certain patients. Allowing qualified compounding pharmacies to use these ingredients hel...</p>
+              <div class="tags"><span class="tag">Specific Drug Substance Support</span> <span class="tag">Compounding Pharmacy Industry</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0017</span>
+                <span class="state">CO</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I am a 59 year old thru hiker with thousands of miles on the trail.  In 2022 I hiked the Appalachian Trail.  On my way n...</strong></p>
+              <p class="comment-text">I am a 59 year old thru hiker with thousands of miles on the trail.  In 2022 I hiked the Appalachian Trail.  On my way north, I suffered an injury to my right knee that stayed with me for the remainder of the hike.  Even after being home for several months afterwards, my knee was still in pain and i...</p>
+              <div class="tags"><span class="tag">Specific Drug Substance Support</span> <span class="tag">Economic & Market Impact</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0024</span>
+                <span class="state">NE</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I am submitting this comment in strong support of including KPV (lysine-proline-valine) on the 503A Bulks List for use i...</strong></p>
+              <p class="comment-text">I am submitting this comment in strong support of including KPV (lysine-proline-valine) on the 503A Bulks List for use in compounded preparations.<br/>I am a patient who has spent the past two and a half years navigating a complex, multi-system inflammatory condition with features consistent with Ma...</p>
+              <div class="tags"><span class="tag">Specific Drug Substance Support</span> <span class="tag">Safety & Quality Concerns</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0028</span>
+                <span class="state">FL</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>I used a compounded BPC 157 peptide to aid in the repair of a torn ligament in my elbow. After two weeks all pain was go...</strong></p>
+              <p class="comment-text">I used a compounded BPC 157 peptide to aid in the repair of a torn ligament in my elbow. After two weeks all pain was gone. I also used it to treat a torn pectoral muscle that I injured lifting weights. Took three weeks and pain completely gone. I used a compounded tirzepatide microdose and lost 40 ...</p>
+              <div class="tags"><span class="tag">Safety & Quality Concerns</span> <span class="tag">Specific Drug Substance Support</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0034</span>
+                
+                <span class="date">2026-04-24</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>Suffered a lateral elbow injury during weight lifting. Assumed it was some form of tendinitis. Spent 4 months in PT with...</strong></p>
+              <p class="comment-text">Suffered a lateral elbow injury during weight lifting. Assumed it was some form of tendinitis. Spent 4 months in PT with very little improvement. Had an MRI to reveal a significant extensor tendon tear. Consulted with a professional sport team ortho (MLB) who highly recommended surgery. I (privately...</p>
+              <div class="tags"></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0038</span>
+                <span class="state">FL</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I am submitting this comment to share my personal experience with BPC-157 and its impact on my health.<br/><br/>I have b...</strong></p>
+              <p class="comment-text">I am submitting this comment to share my personal experience with BPC-157 and its impact on my health.<br/><br/>I have been diagnosed with Ulcerative Colitis and experienced a severe flare that lasted several months. During that time, my symptoms significantly affected my ability to work, maintain a...</p>
+              <div class="tags"><span class="tag">Specific Drug Substance Support</span> <span class="tag">Regulatory Process & FDA Authority</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0030</span>
+                <span class="state">AZ</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I used for my knee (BPC -57) and within 2 weeks I was pain free.  I have been using BPC/TB combo on my 13.5 year old lab...</strong></p>
+              <p class="comment-text">I used for my knee (BPC -57) and within 2 weeks I was pain free.  I have been using BPC/TB combo on my 13.5 year old lab and I am amazed at her improvement.  Her hind is weak and I would say that ah is 50/60% better than she had been.  I need to order more of her.  If I had the money I would double ...</p>
+              <div class="tags"></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0031</span>
+                
+                <span class="date">2026-04-24</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>had shoulder poin for 7 years. tried physical therapy didn&#39;t help. bpc 157, Tb 4, healed within a month.  multiple f...</strong></p>
+              <p class="comment-text">had shoulder poin for 7 years. tried physical therapy didn&#39;t help. bpc 157, Tb 4, healed within a month.  multiple friends and family members used it for various join issues everyone benefitted. no issues noted</p>
+              <div class="tags"></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0042</span>
+                <span class="state">FL</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>Yes please - we need more customizable options for our health.</strong></p>
+              <p class="comment-text">Yes please - we need more customizable options for our health. </p>
+              <div class="tags"></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0053</span>
+                
+                <span class="date">2026-05-29</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I started Tirzepatide almost 2 months ago. I have lost 14lbs so far. I started this because insurance would not cover it...</strong></p>
+              <p class="comment-text">I started Tirzepatide almost 2 months ago. I have lost 14lbs so far. I started this because insurance would not cover it even though I have multiple autoimmune issues. I had 3 doctors that said this medication would help me feel better and get reduce the inflammation! I had 2 small kids and since be...</p>
+              <div class="tags"><span class="tag">Economic & Market Impact</span> <span class="tag">Safety & Quality Concerns</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0055</span>
+                <span class="state">IA</span>
+                <span class="date">2026-05-29</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>This medication has been life altering.  It is affordable so I have access to it--otherwise I would have to keep living...</strong></p>
+              <p class="comment-text">This medication has been life altering.  It is affordable so I have access to it--otherwise I would have to keep living in pain from widespread inflammation.  It has helped me achieve and maintain neatly levels in so many areas. I would be devastated to lose this medication </p>
+              <div class="tags"><span class="tag">Economic & Market Impact</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0057</span>
+                <span class="state">WI</span>
+                <span class="date">2026-05-29</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>Docket No. FDA-2025-N-6895 <br/><br/>As usual, FDA does not take the consumer into consideration when making these decis...</strong></p>
+              <p class="comment-text">Docket No. FDA-2025-N-6895 <br/><br/>As usual, FDA does not take the consumer into consideration when making these decisions. Most people who use 503a and 503B pharmacies for their medication and compounders do not have access to these drugs through insurance or financial reasons. Purchasing compoun...</p>
+              <div class="tags"><span class="tag">Compounding Pharmacy Industry</span> <span class="tag">Regulatory Process & FDA Authority</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0059</span>
+                <span class="state">NE</span>
+                <span class="date">2026-05-29</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>I am currently in a situation that would benefit largely from this treatment as I am almost 51 and scheduled to have sho...</strong></p>
+              <p class="comment-text">I am currently in a situation that would benefit largely from this treatment as I am almost 51 and scheduled to have shoulder surgery for slap tear involving bicep relocation this is all happening through work comp and they will not cover the tb500 peptide I have exhausted all other care methods for...</p>
+              <div class="tags"></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0063</span>
+                <span class="state">UT</span>
+                <span class="date">2026-05-29</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>Docket ID: FDA-2025-N-6895<br/><br/>Subject: Please reclassify BPC-157 to allow compounding again<br/><br/>To the FDA Co...</strong></p>
+              <p class="comment-text">Docket ID: FDA-2025-N-6895<br/><br/>Subject: Please reclassify BPC-157 to allow compounding again<br/><br/>To the FDA Committee,<br/><br/>I am writing to ask you to change the classification of BPC-157 so that compounding pharmacies can legally make it for patients with a doctor&#39;s prescription.<...</p>
+              <div class="tags"><span class="tag">Safety & Quality Concerns</span> <span class="tag">Scientific / Clinical Evidence</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0009</span>
+                
+                <span class="date">2026-04-17</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>RE: Docket No. FDA-2025-N-6895 - Support for adding BPC-157 and TB-500 to the 503A Bulk Drug Substances List.<br/>I am w...</strong></p>
+              <p class="comment-text">RE: Docket No. FDA-2025-N-6895 - Support for adding BPC-157 and TB-500 to the 503A Bulk Drug Substances List.<br/>I am writing to strongly urge the Pharmacy Compounding Advisory Committee to recommend the inclusion of BPC-157 and TB-500 on the 503A Bulk Drug Substances List.<br/>The current classifi...</p>
+              <div class="tags"><span class="tag">Safety & Quality Concerns</span> <span class="tag">Compounding Pharmacy Industry</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0006</span>
+                <span class="state">SC</span>
+                <span class="date">2026-04-17</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>I would like to anecdotally relate that on two specific occasions I have utilized TB500 as an adjunct therapy for surgic...</strong></p>
+              <p class="comment-text">I would like to anecdotally relate that on two specific occasions I have utilized TB500 as an adjunct therapy for surgical healing. Both occurrences - rotator cuff surgery and total knee replacement - I found that my healing timeline was advanced compared to standard guidelines. The outcome was I he...</p>
+              <div class="tags"><span class="tag">Safety & Quality Concerns</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0018</span>
+                <span class="state">FL</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#f8d7da;color:#721c24;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">OPPOSE</span>
+              </div>
+              <p class="summary"><strong>Having a 5yr open toe-wound due to partially-paralyzed legs from a back-injury and having that turn into chronic, system...</strong></p>
+              <p class="comment-text">Having a 5yr open toe-wound due to partially-paralyzed legs from a back-injury and having that turn into chronic, systemic Osteo-Myelitis (MSSA, Bone infection), hospitalized with 6-week IV-antibiotics twice in those 5yrs and having utilized several Peptides over the course of the previous year, can...</p>
+              <div class="tags"><span class="tag">Specific Drug Substance Support</span> <span class="tag">Specific Drug Substance Opposition</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0019</span>
+                
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I have been using injectable peptides for about 2.5 years now.  They have literally changed my life.  I am a tennis play...</strong></p>
+              <p class="comment-text">I have been using injectable peptides for about 2.5 years now.  They have literally changed my life.  I am a tennis player (71 years old) I first used BPC-157 for a tennis elbow that was chronic - wouldn&#39;t heal.  Someone mentioned BPC to me, so I purchased (I was desperate, tired of taking Ibupr...</p>
+              <div class="tags"><span class="tag">Compounding Pharmacy Industry</span> <span class="tag">Safety & Quality Concerns</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0035</span>
+                <span class="state">CA</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#f8d7da;color:#721c24;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">OPPOSE</span>
+              </div>
+              <p class="summary"><strong>Ban all importing of peptides!!! So many people are being &ldquo;prescribed&rdquo; by fake doctors or just influencers....</strong></p>
+              <p class="comment-text">Ban all importing of peptides!!! So many people are being &ldquo;prescribed&rdquo; by fake doctors or just influencers. It&rsquo;s disgusting. </p>
+              <div class="tags"><span class="tag">Specific Drug Substance Opposition</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0047</span>
+                
+                <span class="date">2026-04-29</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>Currently prescribed CJC 1295, ipamorelin, TB 500, GHK-CU, and BPC 157. I am also a TRT patient. The above peptides have...</strong></p>
+              <p class="comment-text">Currently prescribed CJC 1295, ipamorelin, TB 500, GHK-CU, and BPC 157. I am also a TRT patient. The above peptides have been absolutely instrumental in my recovery and performance as a fireman in a major US city. Most of the nights in which  I work are without any sleep, at the most around an hour ...</p>
+              <div class="tags"><span class="tag">Compounding Pharmacy Industry</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0011</span>
+                <span class="state">MN</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>This would be huge and the best thing to happen.  Having peptides available from a pharmacy is very beneficial to myself...</strong></p>
+              <p class="comment-text">This would be huge and the best thing to happen.  Having peptides available from a pharmacy is very beneficial to myself and my patients.  </p>
+              <div class="tags"><span class="tag">Safety & Quality Concerns</span> <span class="tag">Specific Drug Substance Support</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0023</span>
+                <span class="state">IN</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>Re: Docket No. FDA-2025-N-6895 &mdash; Bulk Drug Substances for Section 503A Bulks List<br/><br/>I am a practicing physi...</strong></p>
+              <p class="comment-text">Re: Docket No. FDA-2025-N-6895 &mdash; Bulk Drug Substances for Section 503A Bulks List<br/><br/>I am a practicing physician submitting comments to provide clinical context on the potential role of several peptide-based bulk drug substances under consideration. My focus is on specific, limited indic...</p>
+              <div class="tags"><span class="tag">Specific Drug Substance Support</span> <span class="tag">Regulatory Process & FDA Authority</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0021</span>
+                <span class="state">TX</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I am writing in support of preserving a lawful, medically supervised compounding pathway for the peptide-related bulk dr...</strong></p>
+              <p class="comment-text">I am writing in support of preserving a lawful, medically supervised compounding pathway for the peptide-related bulk drug substances currently under review, including BPC-157, KPV, TB-500, MOTS-C, Emideltide/DSIP, Semax, and Epitalon.<br/><br/>I understand that these substances raise legitimate que...</p>
+              <div class="tags"><span class="tag">Safety & Quality Concerns</span> <span class="tag">Specific Drug Substance Support</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0033</span>
+                
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I started using bp157 and tb500 called the wolverine stack for a bad knee injury and foot injury that became chronic.  I...</strong></p>
+              <p class="comment-text">I started using bp157 and tb500 called the wolverine stack for a bad knee injury and foot injury that became chronic.  I do not use them long term but used them 5 days a week for 6 weeks while e ercising the injuries.  It was no miracle cure but did lead to a slow but sure healing of both injuries t...</p>
+              <div class="tags"><span class="tag">Specific Drug Substance Support</span> <span class="tag">Scientific / Clinical Evidence</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0032</span>
+                <span class="state">FL</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I&#39;ve been using peptides for about 6 months now and honestly I don&#39;t know where I&#39;d be without them. Like a...</strong></p>
+              <p class="comment-text">I&#39;ve been using peptides for about 6 months now and honestly I don&#39;t know where I&#39;d be without them. Like a lot of people I started because I was desperate. I was dealing with serious inflammation and pain and was told by doctors that there wasn&#39;t much they could do. I didn&#39;t wan...</p>
+              <div class="tags"><span class="tag">Safety & Quality Concerns</span> <span class="tag">Specific Drug Substance Support</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0014</span>
+                <span class="state">AZ</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>Please see the attached formal letter from Christien Pe&ntilde;a, MD. As an Emergency Physician, I am providing a front-...</strong></p>
+              <p class="comment-text">Please see the attached formal letter from Christien Pe&ntilde;a, MD. As an Emergency Physician, I am providing a front-line perspective on the public health necessity of moving these substances to the 503A Bulk Drug Substances List to ensure patient safety through medical oversight. </p>
+              <div class="tags"><span class="tag">Safety & Quality Concerns</span> <span class="tag">Compounding Pharmacy Industry</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0062</span>
+                <span class="state">NC</span>
+                <span class="date">2026-05-29</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I am a patient with PCOS and metabolic dysfunction who has benefited significantly from physician-supervised compounded...</strong></p>
+              <p class="comment-text">I am a patient with PCOS and metabolic dysfunction who has benefited significantly from physician-supervised compounded tirzepatide after being unable to access branded medication through insurance coverage.<br/><br/>Before treatment, I struggled with persistent food noise, weight gain, inflammation...</p>
+              <div class="tags"><span class="tag">Safety & Quality Concerns</span> <span class="tag">Compounding Pharmacy Industry</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0054</span>
+                
+                <span class="date">2026-05-29</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I was prescribed Zepbound by my General practitioner to help my issues with blood sugar, cholesterol, and obesity.  Afte...</strong></p>
+              <p class="comment-text">I was prescribed Zepbound by my General practitioner to help my issues with blood sugar, cholesterol, and obesity.  After two appeals and despite being told that I have all the qualifying medicaiton conditions required, my insurance refused to cover this medication. Going through a compounding pharm...</p>
+              <div class="tags"><span class="tag">Compounding Pharmacy Industry</span> <span class="tag">Economic & Market Impact</span></div>
+            </div></div><div class="category-section" id="cat-1"><h3 class="cat-header">Safety & Quality Concerns <span class="count-badge">8</span></h3>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0043</span>
+                <span class="state">NM</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>I am new in learning about peptides but I like what I&#39;m learning. Any alternative to pharmaceuticals should be given...</strong></p>
+              <p class="comment-text">I am new in learning about peptides but I like what I&#39;m learning. Any alternative to pharmaceuticals should be given an opportunity to be tested/tried and if safe, offered to the public. Anything less is treasonous. </p>
+              <div class="tags"><span class="tag">Specific Drug Substance Support</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0050</span>
+                
+                <span class="date">2026-05-29</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>SUBMISSION TO: FDA Public Docket No. FDA-2025-N-6895<br/>RE: July 23-24, 2026 PCAC Meeting -- Bulk Drug Substances for t...</strong></p>
+              <p class="comment-text">SUBMISSION TO: FDA Public Docket No. FDA-2025-N-6895<br/>RE: July 23-24, 2026 PCAC Meeting -- Bulk Drug Substances for the 503A Bulks List<br/>DATE: May 28, 2026<br/><br/>To the Members of the Pharmacy Compounding Advisory Committee:<br/><br/>I am a licensed 503A compounding pharmacy director with a...</p>
+              <div class="tags"><span class="tag">Scientific / Clinical Evidence</span> <span class="tag">Patient Access & Medical Need</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0061</span>
+                
+                <span class="date">2026-05-29</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I am the CEO of Peptide AI, a real-world data and metabolic health tracking platform built for GLP-1 and peptide users....</strong></p>
+              <p class="comment-text">I am the CEO of Peptide AI, a real-world data and metabolic health tracking platform built for GLP-1 and peptide users. I am submitting this comment in support of including BPC-157, TB-500, KPV, MOTs-C, Emideltide (DSIP), Semax, and Epitalon on the Section 503A Bulk Drug Substances List.<br/>Our pla...</p>
+              <div class="tags"><span class="tag">Compounding Pharmacy Industry</span> <span class="tag">Regulatory Process & FDA Authority</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0012</span>
+                
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>Please recategorize on cat-2 peptides and allow pharmacies to compound it. There are is a huge black market of these pep...</strong></p>
+              <p class="comment-text">Please recategorize on cat-2 peptides and allow pharmacies to compound it. There are is a huge black market of these peptides. Unregulated and unlicensed companies are selling peptides without prescriptions posing a greater risk to the public</p>
+              <div class="tags"><span class="tag">Patient Access & Medical Need</span> <span class="tag">Specific Drug Substance Support</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0056</span>
+                <span class="state">WA</span>
+                <span class="date">2026-05-29</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>To the Food and Drug Administration,<br/><br/>I am writing on behalf of TruPeptide (trupeptide.co), an independent, non-...</strong></p>
+              <p class="comment-text">To the Food and Drug Administration,<br/><br/>I am writing on behalf of TruPeptide (trupeptide.co), an independent, non-commercial platform providing compound profiles, FDA status tracking, and consumer education on peptide therapies. We do not sell peptides or accept vendor payments.<br/><br/>1. Re...</p>
+              <div class="tags"><span class="tag">Compounding Pharmacy Industry</span> <span class="tag">Scientific / Clinical Evidence</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0026</span>
+                <span class="state">Ontario</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>Took it for 21 days, at 500 mcg daily. Didn&#39;t notice any side effects or significant benefits. I was taking it for a...</strong></p>
+              <p class="comment-text">Took it for 21 days, at 500 mcg daily. Didn&#39;t notice any side effects or significant benefits. I was taking it for an injury. However, I did notice better recovery from workout to workout.</p>
+              <div class="tags"></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0010</span>
+                
+                <span class="date">2026-04-24</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>I am heavily reliant on compounded medications for my health, especially compounded peptides. Removing these vital medic...</strong></p>
+              <p class="comment-text">I am heavily reliant on compounded medications for my health, especially compounded peptides. Removing these vital medicines would be both an injustice to people like me and would lead me and thousands (millions?) of other Americans to unregulated, potentially unsafe &quot;gray&quot; or black market...</p>
+              <div class="tags"><span class="tag">Patient Access & Medical Need</span> <span class="tag">Regulatory Process & FDA Authority</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0060</span>
+                
+                <span class="date">2026-05-29</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I have never used peptides and don&#39;t know much about them. However, I am currently studying the issue. also, I did r...</strong></p>
+              <p class="comment-text">I have never used peptides and don&#39;t know much about them. However, I am currently studying the issue. also, I did read a good number of public comments on this site regarding this issue, and it appears that peptides are helping a lot of people. Therefore, I believe that the FDA should do whatev...</p>
+              <div class="tags"><span class="tag">Regulatory Process & FDA Authority</span> <span class="tag">Patient Access & Medical Need</span></div>
+            </div></div><div class="category-section" id="cat-3"><h3 class="cat-header">Specific Drug Substance Support <span class="count-badge">1</span></h3>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0022</span>
+                <span class="state">UT</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>I am a 67 year old Caucasian male.  I used a combination of BPC 157, TB 500 and GLK-CU after prostatectomy surgery in Oc...</strong></p>
+              <p class="comment-text">I am a 67 year old Caucasian male.  I used a combination of BPC 157, TB 500 and GLK-CU after prostatectomy surgery in October 2025.  My recovery was amazingly fast versus expectations I thoroughly researched.  Never a bladder control problem.  Because of that experience I started taking BPC 157 and ...</p>
+              <div class="tags"><span class="tag">Scientific / Clinical Evidence</span></div>
+            </div></div><div class="category-section" id="cat-5"><h3 class="cat-header">Compounding Pharmacy Industry <span class="count-badge">3</span></h3>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0005</span>
+                
+                <span class="date">2026-04-17</span>
+                <span style="background:#f8d7da;color:#721c24;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">OPPOSE</span>
+              </div>
+              <p class="summary"><strong>Hello, I would like to send a short statement on this matter regarding Peptide Industry. I would like to ask that you pl...</strong></p>
+              <p class="comment-text">Hello, I would like to send a short statement on this matter regarding Peptide Industry. I would like to ask that you please consider making Peptides Safer and obtainable through a Compounding Pharmacy instead of people who are Choosing to use Resources that are potentially dangerous and unsafe. BPC...</p>
+              <div class="tags"><span class="tag">Patient Access & Medical Need</span> <span class="tag">Safety & Quality Concerns</span></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0029</span>
+                
+                <span class="date">2026-04-24</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>BPC-157 is very healing for so many indications but is contraindicated in cases of aneurysm. TB-500, Epithalon, DSIP, Se...</strong></p>
+              <p class="comment-text">BPC-157 is very healing for so many indications but is contraindicated in cases of aneurysm. TB-500, Epithalon, DSIP, Semax, and KPV all very healing compounds with good indications. MOTS-c can cause histamine reaction so best paired with KPV, but very useful. </p>
+              <div class="tags"></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0015</span>
+                <span class="state">TX</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>I use research peptides and enjoy the fact I dont have to go to a doctor or compounding pharmacy as they tend to be pric...</strong></p>
+              <p class="comment-text">I use research peptides and enjoy the fact I dont have to go to a doctor or compounding pharmacy as they tend to be pricey. If the cost of compounded pharmacy is parallel to research lab then I think its ok to make changes but id like option of using either route. Id like a knowledgeable doctor/np t...</p>
+              <div class="tags"><span class="tag">Economic & Market Impact</span> <span class="tag">Patient Access & Medical Need</span></div>
+            </div></div><div class="category-section" id="cat-7"><h3 class="cat-header">Scientific / Clinical Evidence <span class="count-badge">1</span></h3>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0020</span>
+                
+                <span class="date">2026-04-24</span>
+                <span style="background:#d4edda;color:#155724;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">SUPPORT</span>
+              </div>
+              <p class="summary"><strong>I am submitting this comment to share my personal experience with BPC-157, KPV, and TB-500.<br/><br/>I am a healthy 31-y...</strong></p>
+              <p class="comment-text">I am submitting this comment to share my personal experience with BPC-157, KPV, and TB-500.<br/><br/>I am a healthy 31-year-old male, 6&rsquo;4&rdquo; and 230 lbs, 12% body fat, and I recently completed an 8-week peptide protocol that included BPC-157, KPV, and TB-500 as part of my recovery efforts ...</p>
+              <div class="tags"><span class="tag">Safety & Quality Concerns</span> <span class="tag">Patient Access & Medical Need</span></div>
+            </div></div><div class="category-section" id="cat-8"><h3 class="cat-header">Economic & Market Impact <span class="count-badge">1</span></h3>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0025</span>
+                
+                <span class="date">2026-04-24</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>I don&#39;t know if I&#39;m doing this right, but here it goes:<br/>I ripped apart me knee in jujitsu, a month before th...</strong></p>
+              <p class="comment-text">I don&#39;t know if I&#39;m doing this right, but here it goes:<br/>I ripped apart me knee in jujitsu, a month before the FDA made BPC157 illegal to compound. The MRI showed a fully torn ACL along with a lot other damage. I wasn&#39;t a good candidate for surgery, because I&#39;m a little older, but...</p>
+              <div class="tags"><span class="tag">Patient Access & Medical Need</span> <span class="tag">Safety & Quality Concerns</span></div>
+            </div></div><div class="category-section" id="cat-9"><h3 class="cat-header">Other / General Comment <span class="count-badge">4</span></h3>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0049</span>
+                
+                <span class="date">2026-05-21</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>See attached file(s)</strong></p>
+              <p class="comment-text">See attached file(s)</p>
+              <div class="tags"></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0046</span>
+                <span class="state">TX</span>
+                <span class="date">2026-04-29</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>Peptides, BPC-157:  I had a knee injury in 2023, torn MCL, torn and damaged meniscus.  I used injectable BPC-157 peptide...</strong></p>
+              <p class="comment-text">Peptides, BPC-157:  I had a knee injury in 2023, torn MCL, torn and damaged meniscus.  I used injectable BPC-157 peptides for about 30 days post injury.  I was able to avoid knee surgery entirely, experienced healing in the meniscus, and a re-attached MCL.  My knee surgeon cancelled the surgery afte...</p>
+              <div class="tags"></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0052</span>
+                <span class="state">CA</span>
+                <span class="date">2026-05-29</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>See attached file(s)</strong></p>
+              <p class="comment-text">See attached file(s)</p>
+              <div class="tags"></div>
+            </div>
+            <div class="comment-card">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0058</span>
+                <span class="state">IL</span>
+                <span class="date">2026-05-29</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+              </div>
+              <p class="summary"><strong>See attached file(s)</strong></p>
+              <p class="comment-text">See attached file(s)</p>
+              <div class="tags"></div>
+            </div></div>
+  </div>
+</div>
+
+<script>
+// Category bar chart
+new Chart(document.getElementById('catChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Patient Access & Medical Need", "Scientific / Clinical Evidence", "Safety & Quality Concerns", "Other / General Comment", "Compounding Pharmacy Industry", "Economic & Market Impact", "Specific Drug Substance Support"],
+    datasets: [{
+      data: [44, 1, 8, 4, 3, 1, 1],
+      backgroundColor: ["#4e79a7", "#f28e2b", "#e15759", "#76b7b2", "#59a14f", "#edc948", "#b07aa1"],
+      borderRadius: 5,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#636e72' } },
+      y: { grid: { display: false }, ticks: { color: '#636e72', font: { size: 11 } } }
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+  }
+});
+
+// Sentiment donut
+new Chart(document.getElementById('sentChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ["support", "neutral", "mixed", "oppose"],
+    datasets: [{
+      data: [37, 21, 1, 3],
+      backgroundColor: ["#59a14f", "#4e79a7", "#f28e2b", "#e15759"],
+      borderWidth: 2,
+      borderColor: '#fff',
+    }]
+  },
+  options: {
+    plugins: {
+      legend: { position: 'bottom', labels: { color: '#636e72', font: { size: 12 } } }
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '60%',
+  }
+});
+
+// Timeline
+new Chart(document.getElementById('timelineChart'), {
+  type: 'line',
+  data: {
+    labels: ["2026-04-17", "2026-04-24", "2026-04-29", "2026-05-21", "2026-05-29"],
+    datasets: [{
+      label: 'Comments Filed',
+      data: [8, 35, 4, 1, 14],
+      borderColor: '#1a237e',
+      backgroundColor: 'rgba(26,35,126,0.1)',
+      fill: true,
+      tension: 0.3,
+      pointRadius: 4,
+      pointBackgroundColor: '#1a237e',
+    }]
+  },
+  options: {
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#636e72', maxTicksLimit: 10 } },
+      y: { grid: { color: '#f0f0f0' }, ticks: { color: '#636e72', stepSize: 1 } }
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+  }
+});
+
+function filterComments() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  document.querySelectorAll('.comment-card').forEach(card => {
+    card.classList.toggle('hidden', q.length > 0 && !card.textContent.toLowerCase().includes(q));
+  });
+  document.querySelectorAll('.category-section').forEach(sec => {
+    const visible = sec.querySelectorAll('.comment-card:not(.hidden)').length;
+    sec.classList.toggle('hidden', visible === 0 && q.length > 0);
+  });
+}
+</script>
+</body>
+</html>
