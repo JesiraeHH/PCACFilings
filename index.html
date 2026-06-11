@@ -67,7 +67,7 @@
   <div class="charts-grid">
     <div class="chart-card">
       <h2>Comments by Category</h2>
-      <div class="chart-wrapper"><canvas id="catChart"></canvas></div>
+      <div id="catChart"></div>
     </div>
     <div class="chart-card">
       <h2>Sentiment Distribution</h2>
@@ -916,6 +916,22 @@
                 <div class="tags"><span class="tag">Regulatory Process & FDA Authority</span> <span class="tag">Patient Access & Medical Need</span></div>
                 <a href="https://www.regulations.gov/comment/FDA-2025-N-6895-0060" target="_blank" onclick="event.stopPropagation()" class="reg-link">View on regulations.gov ↗</a>
               </div>
+            </div></div><div class="category-section" id="cat-3"><h3 class="cat-header">Specific Drug Substance Support <span class="count-badge">1</span></h3>
+            <div class="comment-card" onclick="toggleComment(this)">
+              <div class="card-meta">
+                <span class="comment-id">FDA-2025-N-6895-0022</span>
+                <span class="state">UT</span>
+                <span class="date">2026-04-24</span>
+                <span style="background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:600">NEUTRAL</span>
+                <span class="expand-hint">▼ click to expand</span>
+              </div>
+              <p class="summary"><strong>I am a 67 year old Caucasian male.  I used a combination of BPC 157, TB 500 and GLK-CU after prostatectomy surgery in Oc...</strong></p>
+              <p class="comment-text preview-text">I am a 67 year old Caucasian male.  I used a combination of BPC 157, TB 500 and GLK-CU after prostatectomy surgery in October 2025.  My recovery was amazingly fast versus expectations I thoroughly researched.  Never a bladder control problem.  Because of that experience I started taking BPC 157 and <span class="ellipsis">...</span></p>
+              <p class="comment-text full-text" style="display:none">I am a 67 year old Caucasian male.  I used a combination of BPC 157, TB 500 and GLK-CU after prostatectomy surgery in October 2025.  My recovery was amazingly fast versus expectations I thoroughly researched.  Never a bladder control problem.  Because of that experience I started taking BPC 157 and MOT-C.  My soreness after lifting is far less and my glucose control (I am a Type 2 diabetic) is much better than in the past three years 135 for past 3 months.  </p>
+              <div class="card-footer">
+                <div class="tags"><span class="tag">Scientific / Clinical Evidence</span></div>
+                <a href="https://www.regulations.gov/comment/FDA-2025-N-6895-0022" target="_blank" onclick="event.stopPropagation()" class="reg-link">View on regulations.gov ↗</a>
+              </div>
             </div></div><div class="category-section" id="cat-5"><h3 class="cat-header">Compounding Pharmacy Industry <span class="count-badge">3</span></h3>
             <div class="comment-card" onclick="toggleComment(this)">
               <div class="card-meta">
@@ -1065,38 +1081,34 @@
 </div>
 
 <script>
-// Category bar chart
-new Chart(document.getElementById('catChart'), {
-  type: 'bar',
-  data: {
-    labels: ["Patient Access & Medical Need", "Scientific / Clinical Evidence", "Safety & Quality Concerns", "Other / General Comment", "Compounding Pharmacy Industry", "Economic & Market Impact", "Specific Drug Substance Support"],
-    datasets: [{
-      data: [44, 1, 8, 4, 3, 1, 1],
-      backgroundColor: ["#4e79a7", "#f28e2b", "#e15759", "#76b7b2", "#59a14f", "#edc948", "#b07aa1"],
-      borderRadius: 5,
-    }]
-  },
-  options: {
-    indexAxis: 'y',
-    plugins: { legend: { display: false } },
-    scales: {
-      x: { grid: { display: false }, ticks: { color: '#636e72' } },
-      y: { grid: { display: false }, ticks: { color: '#636e72', font: { size: 11 } } }
-    },
-    responsive: true,
-    maintainAspectRatio: false,
-    onClick: (evt, elements) => {
-      if (elements.length > 0) {
-        const idx = elements[0].index;
-        const el = document.getElementById('cat-' + idx);
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    },
-    onHover: (evt, elements) => {
-      evt.native.target.style.cursor = elements.length > 0 ? 'pointer' : 'default';
-    },
-  }
-});
+// Category chart — pure HTML bars, no clipping
+(function() {
+  const labels = ["Patient Access & Medical Need", "Scientific / Clinical Evidence", "Safety & Quality Concerns", "Other / General Comment", "Compounding Pharmacy Industry", "Economic & Market Impact", "Specific Drug Substance Support"];
+  const values = [44, 1, 8, 4, 3, 1, 1];
+  const clrs = ["#4e79a7", "#f28e2b", "#e15759", "#76b7b2", "#59a14f", "#edc948", "#b07aa1"];
+  const ids = ["cat-0", "cat-7", "cat-1", "cat-9", "cat-5", "cat-8", "cat-3"];
+  const max = Math.max(...values);
+  const el = document.getElementById('catChart');
+  el.style.padding = '0.5rem 0';
+  labels.forEach((label, i) => {
+    const pct = Math.round((values[i] / max) * 85);
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;align-items:center;margin-bottom:10px;gap:10px;cursor:pointer';
+    row.title = 'Click to jump to ' + label;
+    row.onclick = () => {
+      const target = document.getElementById(ids[i]);
+      if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    };
+    row.innerHTML = `
+      <div style="width:200px;font-size:12px;color:#444;text-align:right;flex-shrink:0;padding-right:4px">${label}</div>
+      <div style="flex:1;background:#f0f0f0;border-radius:4px;height:24px;position:relative">
+        <div style="width:${pct}%;background:${clrs[i]};height:24px;border-radius:4px;min-width:24px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px">
+          <span style="font-size:11px;color:white;font-weight:700">${values[i]}</span>
+        </div>
+      </div>`;
+    el.appendChild(row);
+  });
+})();
 
 // Sentiment donut
 new Chart(document.getElementById('sentChart'), {
