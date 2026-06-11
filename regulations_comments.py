@@ -161,10 +161,7 @@ def categorize_comments(comments):
     support_words = ["support", "approve", "include", "allow", "important", "necessary",
                      "beneficial", "effective", "critical", "need", "access"]
 
-    PEPTIDE_KEYWORDS = {
-        "TB-500": ["tb-500", "tb500"],
-        "BPC-157": ["bpc-157", "bpc157", "bpc 157"],
-    }
+    PEPTIDE_KEYWORDS = {}
 
     results = {}
     for c in comments:
@@ -422,7 +419,6 @@ def generate_html(comments, categorized):
     </div>
   </div>
 
-  {peptide_spotlight_html}
   <div class="section-title">All Comments by Category</div>
   <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Search comments by keyword, organization, or ID..." oninput="filterComments()">
