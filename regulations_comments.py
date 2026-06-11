@@ -156,10 +156,21 @@ def categorize_comments(comments):
         ]),
     ]
 
-    oppose_words = ["oppose", "against", "reject", "ban", "prohibit", "dangerous",
-                    "should not", "unnecessary", "remove", "exclude", "deny"]
-    support_words = ["support", "approve", "include", "allow", "important", "necessary",
-                     "beneficial", "effective", "critical", "need", "access"]
+    # Strong opposition phrases (must be clearly against compounding/peptides)
+    oppose_phrases = [
+        "i oppose", "we oppose", "should not be", "must not be", "should be banned",
+        "should be removed", "do not support", "strongly oppose", "object to",
+        "should be prohibited", "not be allowed", "not be included"
+    ]
+    # Strong support phrases (clearly in favor of access/compounding)
+    support_phrases = [
+        "i support", "we support", "please include", "please allow", "please approve",
+        "should be included", "should be allowed", "should be available",
+        "please consider", "urge you to", "ask that you", "request that",
+        "important to", "need access", "patients need", "please make",
+        "hope you", "would like to ask", "compounding pharmacy", "safer and obtainable",
+        "life changing", "changed my life", "helped me", "it works", "it has worked"
+    ]
 
     PEPTIDE_KEYWORDS = {}
 
@@ -187,17 +198,21 @@ def categorize_comments(comments):
             if any(kw in text for kw in kws)
         ]
 
-        # Sentiment
-        opp_score = sum(1 for w in oppose_words if w in text)
-        sup_score = sum(1 for w in support_words if w in text)
-        if opp_score > sup_score:
-            sentiment = "oppose"
-        elif sup_score > opp_score:
+        # Sentiment — use phrases for accuracy
+        opp_score = sum(1 for p in oppose_phrases if p in text)
+        sup_score = sum(1 for p in support_phrases if p in text)
+        if sup_score > 0 and opp_score == 0:
             sentiment = "support"
+        elif opp_score > 0 and sup_score == 0:
+            sentiment = "oppose"
         elif opp_score > 0 and sup_score > 0:
             sentiment = "mixed"
         else:
-            sentiment = "neutral"
+            # Fall back: personal story or peptide mention = likely support
+            if any(w in text for w in ["helped me", "my health", "my pain", "my life", "my doctor", "i have been", "i am", "peptide"]):
+                sentiment = "support"
+            else:
+                sentiment = "neutral"
 
         # Summary — first 120 chars of comment
         raw = (c.get("comment") or c.get("title") or "No comment text available.")
