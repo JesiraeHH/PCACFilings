@@ -162,8 +162,8 @@ def categorize_comments(comments):
                      "beneficial", "effective", "critical", "need", "access"]
 
     PEPTIDE_KEYWORDS = {
-        "TB-500": ["tb-500", "tb500", "thymosin beta", "thymosin β", "tb 500"],
-        "BPC-157": ["bpc-157", "bpc157", "bpc 157", "body protection compound"],
+        "TB-500": ["tb-500", "tb500"],
+        "BPC-157": ["bpc-157", "bpc157", "bpc 157"],
     }
 
     results = {}

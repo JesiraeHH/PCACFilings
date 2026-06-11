@@ -365,13 +365,11 @@
     "id": "FDA-2025-N-6895-0034",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "TB-500",
       "BPC-157"
     ],
     "summary": "Suffered a lateral elbow injury during weight lifting. Assumed it was some form of tendinitis. Spent 4 months in PT with...",
     "sentiment": "neutral",
     "peptides": [
-      "TB-500",
       "BPC-157"
     ]
   },
@@ -549,14 +547,12 @@
     "id": "FDA-2025-N-6895-0022",
     "category": "Specific Drug Substance Support",
     "tags": [
-      "TB-500",
       "BPC-157",
       "Scientific / Clinical Evidence"
     ],
     "summary": "I am a 67 year old Caucasian male.  I used a combination of BPC 157, TB 500 and GLK-CU after prostatectomy surgery in Oc...",
     "sentiment": "neutral",
     "peptides": [
-      "TB-500",
       "BPC-157"
     ]
   },
@@ -589,14 +585,12 @@
     "id": "FDA-2025-N-6895-0047",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "TB-500",
       "BPC-157",
       "Compounding Pharmacy Industry"
     ],
     "summary": "Currently prescribed CJC 1295, ipamorelin, TB 500, GHK-CU, and BPC 157. I am also a TRT patient. The above peptides have...",
     "sentiment": "neutral",
     "peptides": [
-      "TB-500",
       "BPC-157"
     ]
   },
