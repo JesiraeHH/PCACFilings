@@ -318,26 +318,6 @@ def generate_html(comments, categorized):
             </div>"""
         cards_html += "</div>"
 
-    # Build peptide spotlight — summary only, no duplicate cards
-    tb_count = len([e for e in enriched if "TB-500" in (e.get("peptides") or [])])
-    bpc_count = len([e for e in enriched if "BPC-157" in (e.get("peptides") or [])])
-    peptide_spotlight_html = f"""
-    <div class="peptide-section">
-      <h3>🔬 Peptide Mentions in This Docket</h3>
-      <p style="font-size:0.9rem;color:#636e72;margin-bottom:0.75rem">Comments referencing specific peptides under review:</p>
-      <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
-        <div style="background:white;border-radius:8px;padding:0.75rem 1.25rem;border:1px solid #ffcc80">
-          <span style="font-size:1.5rem;font-weight:700;color:#e65100">{tb_count}</span>
-          <span style="font-size:0.9rem;color:#636e72;margin-left:0.5rem">comments mention <strong>TB-500</strong></span>
-        </div>
-        <div style="background:white;border-radius:8px;padding:0.75rem 1.25rem;border:1px solid #ffcc80">
-          <span style="font-size:1.5rem;font-weight:700;color:#e65100">{bpc_count}</span>
-          <span style="font-size:0.9rem;color:#636e72;margin-left:0.5rem">comments mention <strong>BPC-157</strong></span>
-        </div>
-      </div>
-      <p style="font-size:0.8rem;color:#b2bec3;margin-top:0.75rem">Search for "tb500" or "bpc-157" below to filter these comments.</p>
-    </div>"""
-
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
