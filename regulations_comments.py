@@ -300,20 +300,26 @@ def generate_html(comments, categorized):
             org_html = f'<span class="org">{org}</span>' if org else ""
             state = item.get("state") or ""
             state_html = f'<span class="state">{state}</span>' if state else ""
-            comment_preview = (item.get("comment") or "")[:300]
-            if len(item.get("comment", "")) > 300:
-                comment_preview += "..."
+            full_comment = (item.get("comment") or "No comment text available.")
+            comment_preview = full_comment[:300]
+            is_long = len(full_comment) > 300
+            reg_url = f"https://www.regulations.gov/comment/{item['id']}"
             cards_html += f"""
-            <div class="comment-card">
+            <div class="comment-card" onclick="toggleComment(this)">
               <div class="card-meta">
                 <span class="comment-id">{item['id']}</span>
                 {org_html}{state_html}
                 <span class="date">{item.get('posted_date','')}</span>
                 {sentiment_badge(item.get('sentiment','neutral'))}
+                <span class="expand-hint">▼ click to expand</span>
               </div>
               <p class="summary"><strong>{item.get('summary','')}</strong></p>
-              <p class="comment-text">{comment_preview}</p>
-              <div class="tags">{tags_html}</div>
+              <p class="comment-text preview-text">{comment_preview}{'<span class="ellipsis">...</span>' if is_long else ''}</p>
+              {'<p class="comment-text full-text" style="display:none">' + full_comment + '</p>' if is_long else ''}
+              <div class="card-footer">
+                <div class="tags">{tags_html}</div>
+                <a href="{reg_url}" target="_blank" onclick="event.stopPropagation()" class="reg-link">View on regulations.gov ↗</a>
+              </div>
             </div>"""
         cards_html += "</div>"
 
@@ -331,15 +337,20 @@ def generate_html(comments, categorized):
                 org = item.get("organization") or ""
                 org_html = f'<span class="org">{org}</span> ' if org else ""
                 peptide_spotlight_html += f"""
-                <div class="comment-card" style="border-left-color:#e65100">
+                <div class="comment-card" style="border-left-color:#e65100" onclick="toggleComment(this)">
                   <div class="card-meta">
                     <span class="comment-id">{item['id']}</span>
                     {org_html}
                     <span class="date">{item.get('posted_date','')}</span>
                     {sentiment_badge(item.get('sentiment','neutral'))}
                     <span class="peptide-tag">{peptide}</span>
+                    <span class="expand-hint">▼ click to expand</span>
                   </div>
-                  <p class="comment-text">{comment_preview}</p>
+                  <p class="comment-text preview-text">{comment_preview}</p>
+                  <p class="comment-text full-text" style="display:none">{(item.get('comment') or '')}</p>
+                  <div class="card-footer">
+                    <a href="https://www.regulations.gov/comment/{item['id']}" target="_blank" onclick="event.stopPropagation()" class="reg-link">View on regulations.gov ↗</a>
+                  </div>
                 </div>"""
             peptide_spotlight_html += "</div>"
     if not peptide_spotlight_html:
@@ -388,6 +399,13 @@ def generate_html(comments, categorized):
   .peptide-section {{ background: #fff8e1; border: 2px solid #ffcc02; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }}
   .peptide-section h3 {{ color: #e65100; margin-bottom: 0.75rem; font-size: 1.1rem; }}
   .hidden {{ display: none !important; }}
+  .comment-card {{ cursor: pointer; transition: box-shadow 0.15s; }}
+  .comment-card:hover {{ box-shadow: 0 4px 14px rgba(0,0,0,0.12); }}
+  .expand-hint {{ font-size: 0.72rem; color: #b2bec3; margin-left: auto; }}
+  .comment-card.expanded .expand-hint {{ content: "▲ collapse"; }}
+  .card-footer {{ display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; flex-wrap: wrap; gap: 0.5rem; }}
+  .reg-link {{ font-size: 0.78rem; color: #1a237e; text-decoration: none; white-space: nowrap; }}
+  .reg-link:hover {{ text-decoration: underline; }}
   @media (max-width: 600px) {{ .header h1 {{ font-size: 1.1rem; }} .charts-grid {{ grid-template-columns: 1fr; }} }}
 </style>
 </head>
@@ -447,7 +465,7 @@ new Chart(document.getElementById('catChart'), {{
     layout: {{ padding: {{ left: 10 }} }},
     scales: {{
       x: {{ grid: {{ display: false }}, ticks: {{ color: '#636e72' }} }},
-      y: {{ grid: {{ display: false }}, ticks: {{ color: '#636e72', font: {{ size: 11 }}, autoSkip: false }}, afterFit: (axis) => {{ axis.width = 220; }} }}
+      y: {{ grid: {{ display: false }}, ticks: {{ color: '#636e72', font: {{ size: 11 }}, autoSkip: false }}, afterFit: (axis) => {{ axis.width = 280; }} }}
     }},
     responsive: true,
     maintainAspectRatio: false,
@@ -502,6 +520,24 @@ new Chart(document.getElementById('timelineChart'), {{
     maintainAspectRatio: false,
   }}
 }});
+
+function toggleComment(card) {{
+  const preview = card.querySelector('.preview-text');
+  const full = card.querySelector('.full-text');
+  const hint = card.querySelector('.expand-hint');
+  if (!full) return;
+  if (full.style.display === 'none') {{
+    full.style.display = 'block';
+    if (preview) preview.style.display = 'none';
+    if (hint) hint.textContent = '▲ collapse';
+    card.classList.add('expanded');
+  }} else {{
+    full.style.display = 'none';
+    if (preview) preview.style.display = 'block';
+    if (hint) hint.textContent = '▼ click to expand';
+    card.classList.remove('expanded');
+  }}
+}}
 
 function filterComments() {{
   const q = document.getElementById('searchInput').value.toLowerCase();
