@@ -1085,6 +1085,16 @@ new Chart(document.getElementById('catChart'), {
     },
     responsive: true,
     maintainAspectRatio: false,
+    onClick: (evt, elements) => {
+      if (elements.length > 0) {
+        const idx = elements[0].index;
+        const el = document.getElementById('cat-' + idx);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    },
+    onHover: (evt, elements) => {
+      evt.native.target.style.cursor = elements.length > 0 ? 'pointer' : 'default';
+    },
   }
 });
 
