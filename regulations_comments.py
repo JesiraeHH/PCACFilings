@@ -11,7 +11,6 @@ import time
 from pathlib import Path
 
 import requests
-import anthropic
 
 DOCUMENT_ID = "FDA-2025-N-6895-0001"
 DOCUMENT_OBJECT_ID = "09000064b92865ab"
@@ -113,64 +112,115 @@ def load_or_fetch_comments():
 
 
 def categorize_comments(comments):
-    """Use Claude to categorize all comments at once."""
-    client = anthropic.Anthropic()
+    """Categorize comments using keyword matching — no API key needed."""
+    print("Categorizing comments...", flush=True)
 
-    # Build a compact representation of all comments for Claude
-    comment_summaries = []
+    keyword_map = [
+        ("Patient Access & Medical Need", [
+            "patient", "access", "need", "condition", "disease", "treatment",
+            "therapy", "doctor", "prescription", "medical", "health", "suffer",
+            "pain", "chronic", "life", "quality of life", "affordable"
+        ]),
+        ("Safety & Quality Concerns", [
+            "safe", "safety", "risk", "harm", "danger", "adverse", "side effect",
+            "contamination", "sterile", "quality", "standard", "concern", "protect"
+        ]),
+        ("Specific Drug Substance Support", [
+            "support", "include", "approve", "add", "list", "allow", "should be",
+            "necessary", "effective", "beneficial", "important", "critical"
+        ]),
+        ("Specific Drug Substance Opposition", [
+            "oppose", "remove", "exclude", "ban", "prohibit", "dangerous",
+            "unnecessary", "should not", "reject", "deny", "against"
+        ]),
+        ("Scientific / Clinical Evidence", [
+            "study", "research", "evidence", "clinical", "trial", "data", "literature",
+            "published", "science", "scientific", "pharmacology", "efficacy", "result"
+        ]),
+        ("Regulatory Process & FDA Authority", [
+            "fda", "regulation", "regulatory", "authority", "law", "statute",
+            "fdca", "503a", "503b", "rule", "guidance", "policy", "process",
+            "docket", "comment", "federal", "congress"
+        ]),
+        ("Compounding Pharmacy Industry", [
+            "compound", "compounding", "pharmacy", "pharmacist", "compounder",
+            "503a", "503b", "bulk", "outsourcing", "facility", "pcab"
+        ]),
+        ("Healthcare Provider Perspective", [
+            "physician", "prescriber", "provider", "practitioner", "nurse",
+            "veterinarian", "vet", "clinic", "hospital", "practice", "patient care"
+        ]),
+        ("Economic & Market Impact", [
+            "cost", "price", "market", "commercial", "manufacturer", "industry",
+            "business", "economic", "afford", "insurance", "supply", "shortage"
+        ]),
+    ]
+
+    oppose_words = ["oppose", "against", "reject", "ban", "prohibit", "dangerous",
+                    "should not", "unnecessary", "remove", "exclude", "deny"]
+    support_words = ["support", "approve", "include", "allow", "important", "necessary",
+                     "beneficial", "effective", "critical", "need", "access"]
+
+    PEPTIDE_KEYWORDS = {
+        "TB-500": ["tb-500", "tb500", "thymosin beta", "thymosin β", "tb 500"],
+        "BPC-157": ["bpc-157", "bpc157", "bpc 157", "body protection compound"],
+    }
+
+    results = {}
     for c in comments:
-        text = c["comment"][:500] if c["comment"] else c["title"]
-        comment_summaries.append(f'ID:{c["id"]} | Org:"{c["organization"]}" | {text}')
+        text = (c.get("comment") or c.get("title") or "").lower()
 
-    comments_text = "\n\n".join(comment_summaries)
+        # Score each category
+        scores = {}
+        for cat, keywords in keyword_map:
+            scores[cat] = sum(1 for kw in keywords if kw in text)
 
-    categories_list = "\n".join(f"- {cat}" for cat in CATEGORIES)
+        # Pick top category
+        best_cat = max(scores, key=scores.get)
+        if scores[best_cat] == 0:
+            best_cat = "Other / General Comment"
 
-    prompt = f"""You are analyzing public comments filed with the FDA on docket FDA-2025-N-6895
-regarding the Pharmacy Compounding Advisory Committee's review of bulk drug substances
-nominated for the Section 503A Bulk Drug Substances List.
+        # Pick top 2 tags (next highest scoring categories)
+        sorted_cats = sorted(scores, key=scores.get, reverse=True)
+        tags = [c for c in sorted_cats[1:3] if scores[c] > 0]
 
-For EACH comment below, provide:
-1. One primary category (must be exactly one from the list)
-2. Up to 2 additional tags (from the list or short descriptive tags)
-3. A 1-sentence summary (max 20 words)
-4. Sentiment: support / oppose / neutral / mixed
+        # Flag peptide mentions
+        peptides_mentioned = [
+            peptide for peptide, kws in PEPTIDE_KEYWORDS.items()
+            if any(kw in text for kw in kws)
+        ]
+        if peptides_mentioned:
+            tags = peptides_mentioned + [t for t in tags if t not in peptides_mentioned]
 
-Categories:
-{categories_list}
+        # Sentiment
+        opp_score = sum(1 for w in oppose_words if w in text)
+        sup_score = sum(1 for w in support_words if w in text)
+        if opp_score > sup_score:
+            sentiment = "oppose"
+        elif sup_score > opp_score:
+            sentiment = "support"
+        elif opp_score > 0 and sup_score > 0:
+            sentiment = "mixed"
+        else:
+            sentiment = "neutral"
 
-Comments:
-{comments_text}
+        # Summary — first 120 chars of comment
+        raw = (c.get("comment") or c.get("title") or "No comment text available.")
+        summary = raw[:120].strip()
+        if len(raw) > 120:
+            summary += "..."
 
-Respond as JSON array:
-[
-  {{
-    "id": "FDA-2025-N-6895-XXXX",
-    "category": "exact category name",
-    "tags": ["tag1", "tag2"],
-    "summary": "one sentence summary",
-    "sentiment": "support|oppose|neutral|mixed"
-  }},
-  ...
-]
+        results[c["id"]] = {
+            "id": c["id"],
+            "category": best_cat,
+            "tags": tags[:3],
+            "summary": summary,
+            "sentiment": sentiment,
+            "peptides": peptides_mentioned,
+        }
 
-Return ONLY the JSON array, no other text."""
-
-    print("Calling Claude to categorize comments...", flush=True)
-    message = client.messages.create(
-        model="claude-sonnet-4-6",
-        max_tokens=8192,
-        messages=[{"role": "user", "content": prompt}],
-    )
-
-    raw = message.content[0].text.strip()
-    # Strip markdown code fences if present
-    if raw.startswith("```"):
-        raw = raw.split("```")[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
-    categorized = json.load(open("/dev/stdin") if False else __import__("io").StringIO(raw))
-    return {item["id"]: item for item in categorized}
+    print(f"Categorized {len(results)} comments.", flush=True)
+    return results
 
 
 def generate_html(comments, categorized):
@@ -267,6 +317,34 @@ def generate_html(comments, categorized):
             </div>"""
         cards_html += "</div>"
 
+    # Build peptide spotlight section
+    peptide_spotlight_html = ""
+    for peptide in ["TB-500", "BPC-157"]:
+        peptide_comments = [e for e in enriched if peptide in (e.get("peptides") or [])]
+        if peptide_comments:
+            peptide_spotlight_html += f'<div class="peptide-section">'
+            peptide_spotlight_html += f'<h3>🔬 {peptide} — {len(peptide_comments)} comment(s) mentioning this peptide</h3>'
+            for item in peptide_comments:
+                comment_preview = (item.get("comment") or "")[:400]
+                if len(item.get("comment","")) > 400:
+                    comment_preview += "..."
+                org = item.get("organization") or ""
+                org_html = f'<span class="org">{org}</span> ' if org else ""
+                peptide_spotlight_html += f"""
+                <div class="comment-card" style="border-left-color:#e65100">
+                  <div class="card-meta">
+                    <span class="comment-id">{item['id']}</span>
+                    {org_html}
+                    <span class="date">{item.get('posted_date','')}</span>
+                    {sentiment_badge(item.get('sentiment','neutral'))}
+                    <span class="peptide-tag">{peptide}</span>
+                  </div>
+                  <p class="comment-text">{comment_preview}</p>
+                </div>"""
+            peptide_spotlight_html += "</div>"
+    if not peptide_spotlight_html:
+        peptide_spotlight_html = '<div class="peptide-section"><h3>🔬 TB-500 &amp; BPC-157</h3><p>No comments specifically mentioning TB-500 or BPC-157 were found in this docket.</p></div>'
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -286,7 +364,7 @@ def generate_html(comments, categorized):
   .charts-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }}
   .chart-card {{ background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }}
   .chart-card h2 {{ font-size: 1rem; color: #636e72; margin-bottom: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }}
-  .chart-wrapper {{ position: relative; height: 300px; }}
+  .chart-wrapper {{ position: relative; height: 420px; }}
   .timeline-wrapper {{ position: relative; height: 200px; }}
   .full-width {{ grid-column: 1 / -1; }}
   .section-title {{ font-size: 1.25rem; font-weight: 700; margin: 2rem 0 1rem; color: #2d3436; }}
@@ -306,6 +384,9 @@ def generate_html(comments, categorized):
   .comment-text {{ font-size: 0.82rem; color: #636e72; line-height: 1.5; margin-bottom: 0.5rem; }}
   .tags {{ display: flex; gap: 0.4rem; flex-wrap: wrap; }}
   .tag {{ font-size: 0.72rem; background: #f0f4ff; color: #1a237e; padding: 2px 8px; border-radius: 12px; border: 1px solid #c5cae9; }}
+  .peptide-tag {{ font-size: 0.72rem; background: #fff3e0; color: #e65100; padding: 2px 8px; border-radius: 12px; border: 1px solid #ffcc80; font-weight: 700; }}
+  .peptide-section {{ background: #fff8e1; border: 2px solid #ffcc02; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }}
+  .peptide-section h3 {{ color: #e65100; margin-bottom: 0.75rem; font-size: 1.1rem; }}
   .hidden {{ display: none !important; }}
   @media (max-width: 600px) {{ .header h1 {{ font-size: 1.1rem; }} .charts-grid {{ grid-template-columns: 1fr; }} }}
 </style>
@@ -338,6 +419,7 @@ def generate_html(comments, categorized):
     </div>
   </div>
 
+  {peptide_spotlight_html}
   <div class="section-title">All Comments by Category</div>
   <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Search comments by keyword, organization, or ID..." oninput="filterComments()">
@@ -364,7 +446,7 @@ new Chart(document.getElementById('catChart'), {{
     plugins: {{ legend: {{ display: false }} }},
     scales: {{
       x: {{ grid: {{ display: false }}, ticks: {{ color: '#636e72' }} }},
-      y: {{ grid: {{ display: false }}, ticks: {{ color: '#636e72', font: {{ size: 11 }} }} }}
+      y: {{ grid: {{ display: false }}, ticks: {{ color: '#636e72', font: {{ size: 11 }}, autoSkip: false }} }}
     }},
     responsive: true,
     maintainAspectRatio: false,
