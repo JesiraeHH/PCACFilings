@@ -20,16 +20,16 @@ API_KEY = os.environ.get("REGULATIONS_GOV_API_KEY", "DEMO_KEY")
 CACHE_FILE = Path("comments_cache.json")
 
 CATEGORIES = [
-    "Patient Access",
-    "Safety & Quality",
-    "Regulatory Process",
+    "Patient Access & Medical Need",
+    "Safety & Quality Concerns",
+    "Regulatory Process & FDA Authority",
     "Drug Substance Support",
     "Drug Substance Opposition",
-    "Compounding Pharmacy",
-    "Healthcare Provider",
-    "Scientific Evidence",
-    "Economic Impact",
-    "Other / General",
+    "Compounding Pharmacy Industry",
+    "Healthcare Provider Perspective",
+    "Scientific / Clinical Evidence",
+    "Economic & Market Impact",
+    "Other / General Comment",
 ]
 
 
