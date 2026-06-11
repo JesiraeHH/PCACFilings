@@ -372,10 +372,10 @@ def generate_html(comments, categorized):
   .header .meta {{ margin-top: 1rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }}
   .header .meta-item {{ background: rgba(255,255,255,0.15); padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.85rem; }}
   .container {{ max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }}
-  .charts-grid {{ display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }}
+  .charts-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }}
   .chart-card {{ background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }}
   .chart-card h2 {{ font-size: 1rem; color: #636e72; margin-bottom: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }}
-  .chart-wrapper {{ position: relative; height: 380px; }}
+  .chart-wrapper {{ position: relative; height: 320px; }}
   .timeline-wrapper {{ position: relative; height: 200px; }}
   .full-width {{ grid-column: 1 / -1; }}
   .section-title {{ font-size: 1.25rem; font-weight: 700; margin: 2rem 0 1rem; color: #2d3436; }}
@@ -462,19 +462,9 @@ new Chart(document.getElementById('catChart'), {{
   options: {{
     indexAxis: 'y',
     plugins: {{ legend: {{ display: false }} }},
-    layout: {{ padding: {{ left: 0 }} }},
     scales: {{
       x: {{ grid: {{ display: false }}, ticks: {{ color: '#636e72' }} }},
-      y: {{
-        grid: {{ display: false }},
-        ticks: {{
-          color: '#636e72',
-          font: {{ size: 11 }},
-          autoSkip: false,
-          mirror: false,
-        }},
-        afterFit: (axis) => {{ axis.width = 340; }}
-      }}
+      y: {{ grid: {{ display: false }}, ticks: {{ color: '#636e72', font: {{ size: 11 }} }} }}
     }},
     responsive: true,
     maintainAspectRatio: false,
