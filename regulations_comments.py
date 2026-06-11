@@ -444,9 +444,10 @@ new Chart(document.getElementById('catChart'), {{
   options: {{
     indexAxis: 'y',
     plugins: {{ legend: {{ display: false }} }},
+    layout: {{ padding: {{ left: 10 }} }},
     scales: {{
       x: {{ grid: {{ display: false }}, ticks: {{ color: '#636e72' }} }},
-      y: {{ grid: {{ display: false }}, ticks: {{ color: '#636e72', font: {{ size: 11 }}, autoSkip: false }} }}
+      y: {{ grid: {{ display: false }}, ticks: {{ color: '#636e72', font: {{ size: 11 }}, autoSkip: false }}, afterFit: (axis) => {{ axis.width = 220; }} }}
     }},
     responsive: true,
     maintainAspectRatio: false,
