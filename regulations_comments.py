@@ -181,7 +181,8 @@ def categorize_comments(comments):
 
     results = {}
     for c in comments:
-        text = (c.get("comment") or c.get("title") or "").lower()
+        import html as _html
+        text = _html.unescape((c.get("comment") or c.get("title") or "")).lower()
 
         # Score each category
         scores = {}
