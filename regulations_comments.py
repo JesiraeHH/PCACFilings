@@ -23,8 +23,8 @@ CATEGORIES = [
     "Patient Access & Medical Need",
     "Safety & Quality Concerns",
     "Regulatory Process & FDA Authority",
-    "Specific Drug Substance Support",
-    "Specific Drug Substance Opposition",
+    "Drug Substance Support",
+    "Drug Substance Opposition",
     "Compounding Pharmacy Industry",
     "Healthcare Provider Perspective",
     "Scientific / Clinical Evidence",
@@ -373,7 +373,7 @@ def generate_html(comments, categorized):
   .header .meta-item {{ background: rgba(255,255,255,0.15); padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.85rem; }}
   .container {{ max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }}
   .charts-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }}
-  .chart-card {{ background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }}
+  .chart-card {{ background: white; border-radius: 12px; padding: 1.5rem 1.5rem 1.5rem 2.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); overflow: visible; }}
   .chart-card h2 {{ font-size: 1rem; color: #636e72; margin-bottom: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }}
   .chart-wrapper {{ position: relative; height: 420px; }}
   .timeline-wrapper {{ position: relative; height: 200px; }}
