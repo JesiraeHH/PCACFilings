@@ -3,7 +3,6 @@
     "id": "FDA-2025-N-6895-0002",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "TB-500",
       "Safety & Quality Concerns",
       "Specific Drug Substance Support"
     ],
@@ -39,7 +38,6 @@
     "id": "FDA-2025-N-6895-0037",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "TB-500",
       "Scientific / Clinical Evidence"
     ],
     "summary": "I got a severe sprained ankle training for a trail 100k ultramarathon. The race was 3 weeks away from the injury. I work...",
@@ -63,9 +61,8 @@
     "id": "FDA-2025-N-6895-0016",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "TB-500",
-      "BPC-157",
-      "Safety & Quality Concerns"
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
     ],
     "summary": "I am happy about the potential change on the classification of certain peptides! I have been using, with my Doctor&#39;s...",
     "sentiment": "mixed",
@@ -78,9 +75,8 @@
     "id": "FDA-2025-N-6895-0020",
     "category": "Scientific / Clinical Evidence",
     "tags": [
-      "TB-500",
-      "BPC-157",
-      "Safety & Quality Concerns"
+      "Safety & Quality Concerns",
+      "Patient Access & Medical Need"
     ],
     "summary": "I am submitting this comment to share my personal experience with BPC-157, KPV, and TB-500.<br/><br/>I am a healthy 31-y...",
     "sentiment": "support",
@@ -93,7 +89,6 @@
     "id": "FDA-2025-N-6895-0027",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "BPC-157",
       "Specific Drug Substance Support"
     ],
     "summary": "I&rsquo;ve used Tirzepatide, BPC-157, and Sermorelin and my life had categorically changed for the better. I&rsquo;m hea...",
@@ -105,10 +100,7 @@
   "FDA-2025-N-6895-0036": {
     "id": "FDA-2025-N-6895-0036",
     "category": "Patient Access & Medical Need",
-    "tags": [
-      "TB-500",
-      "BPC-157"
-    ],
+    "tags": [],
     "summary": "My practicing prescribed BPC157/TB500 as I am recovering from mold toxicity/long covid. I am certain this peptide blend...",
     "sentiment": "neutral",
     "peptides": [
@@ -141,7 +133,6 @@
     "id": "FDA-2025-N-6895-0044",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "BPC-157",
       "Safety & Quality Concerns"
     ],
     "summary": "About 3 years ago, I used a peptide called PDA (same as BPC-157) for continued pain from tendonitis in my elbow. This pa...",
@@ -154,9 +145,8 @@
     "id": "FDA-2025-N-6895-0048",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "TB-500",
-      "BPC-157",
-      "Regulatory Process & FDA Authority"
+      "Regulatory Process & FDA Authority",
+      "Healthcare Provider Perspective"
     ],
     "summary": "My name is Jay, MSN, RN, PHN. I am a licensed registered nurse in the State of California with over 15 years of clinical...",
     "sentiment": "support",
@@ -180,9 +170,8 @@
     "id": "FDA-2025-N-6895-0050",
     "category": "Safety & Quality Concerns",
     "tags": [
-      "TB-500",
-      "BPC-157",
-      "Scientific / Clinical Evidence"
+      "Scientific / Clinical Evidence",
+      "Patient Access & Medical Need"
     ],
     "summary": "SUBMISSION TO: FDA Public Docket No. FDA-2025-N-6895<br/>RE: July 23-24, 2026 PCAC Meeting -- Bulk Drug Substances for t...",
     "sentiment": "support",
@@ -206,9 +195,8 @@
     "id": "FDA-2025-N-6895-0061",
     "category": "Safety & Quality Concerns",
     "tags": [
-      "TB-500",
-      "BPC-157",
-      "Compounding Pharmacy Industry"
+      "Compounding Pharmacy Industry",
+      "Regulatory Process & FDA Authority"
     ],
     "summary": "I am the CEO of Peptide AI, a real-world data and metabolic health tracking platform built for GLP-1 and peptide users....",
     "sentiment": "support",
@@ -229,7 +217,6 @@
     "id": "FDA-2025-N-6895-0005",
     "category": "Compounding Pharmacy Industry",
     "tags": [
-      "BPC-157",
       "Patient Access & Medical Need",
       "Safety & Quality Concerns"
     ],
@@ -287,7 +274,6 @@
     "id": "FDA-2025-N-6895-0025",
     "category": "Economic & Market Impact",
     "tags": [
-      "BPC-157",
       "Patient Access & Medical Need",
       "Safety & Quality Concerns"
     ],
@@ -301,7 +287,6 @@
     "id": "FDA-2025-N-6895-0017",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "BPC-157",
       "Specific Drug Substance Support",
       "Economic & Market Impact"
     ],
@@ -336,10 +321,7 @@
   "FDA-2025-N-6895-0029": {
     "id": "FDA-2025-N-6895-0029",
     "category": "Compounding Pharmacy Industry",
-    "tags": [
-      "TB-500",
-      "BPC-157"
-    ],
+    "tags": [],
     "summary": "BPC-157 is very healing for so many indications but is contraindicated in cases of aneurysm. TB-500, Epithalon, DSIP, Se...",
     "sentiment": "neutral",
     "peptides": [
@@ -351,7 +333,6 @@
     "id": "FDA-2025-N-6895-0028",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "BPC-157",
       "Safety & Quality Concerns",
       "Specific Drug Substance Support"
     ],
@@ -364,9 +345,7 @@
   "FDA-2025-N-6895-0034": {
     "id": "FDA-2025-N-6895-0034",
     "category": "Patient Access & Medical Need",
-    "tags": [
-      "BPC-157"
-    ],
+    "tags": [],
     "summary": "Suffered a lateral elbow injury during weight lifting. Assumed it was some form of tendinitis. Spent 4 months in PT with...",
     "sentiment": "neutral",
     "peptides": [
@@ -377,7 +356,6 @@
     "id": "FDA-2025-N-6895-0038",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "BPC-157",
       "Specific Drug Substance Support",
       "Regulatory Process & FDA Authority"
     ],
@@ -398,9 +376,7 @@
   "FDA-2025-N-6895-0031": {
     "id": "FDA-2025-N-6895-0031",
     "category": "Patient Access & Medical Need",
-    "tags": [
-      "BPC-157"
-    ],
+    "tags": [],
     "summary": "had shoulder poin for 7 years. tried physical therapy didn&#39;t help. bpc 157, Tb 4, healed within a month.  multiple f...",
     "sentiment": "neutral",
     "peptides": [
@@ -418,9 +394,7 @@
   "FDA-2025-N-6895-0046": {
     "id": "FDA-2025-N-6895-0046",
     "category": "Other / General Comment",
-    "tags": [
-      "BPC-157"
-    ],
+    "tags": [],
     "summary": "Peptides, BPC-157:  I had a knee injury in 2023, torn MCL, torn and damaged meniscus.  I used injectable BPC-157 peptide...",
     "sentiment": "neutral",
     "peptides": [
@@ -452,9 +426,8 @@
     "id": "FDA-2025-N-6895-0056",
     "category": "Safety & Quality Concerns",
     "tags": [
-      "TB-500",
-      "BPC-157",
-      "Compounding Pharmacy Industry"
+      "Compounding Pharmacy Industry",
+      "Scientific / Clinical Evidence"
     ],
     "summary": "To the Food and Drug Administration,<br/><br/>I am writing on behalf of TruPeptide (trupeptide.co), an independent, non-...",
     "sentiment": "support",
@@ -477,9 +450,7 @@
   "FDA-2025-N-6895-0059": {
     "id": "FDA-2025-N-6895-0059",
     "category": "Patient Access & Medical Need",
-    "tags": [
-      "TB-500"
-    ],
+    "tags": [],
     "summary": "I am currently in a situation that would benefit largely from this treatment as I am almost 51 and scheduled to have sho...",
     "sentiment": "neutral",
     "peptides": [
@@ -490,7 +461,6 @@
     "id": "FDA-2025-N-6895-0063",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "BPC-157",
       "Safety & Quality Concerns",
       "Scientific / Clinical Evidence"
     ],
@@ -504,9 +474,8 @@
     "id": "FDA-2025-N-6895-0009",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "TB-500",
-      "BPC-157",
-      "Safety & Quality Concerns"
+      "Safety & Quality Concerns",
+      "Compounding Pharmacy Industry"
     ],
     "summary": "RE: Docket No. FDA-2025-N-6895 - Support for adding BPC-157 and TB-500 to the 503A Bulk Drug Substances List.<br/>I am w...",
     "sentiment": "support",
@@ -519,7 +488,6 @@
     "id": "FDA-2025-N-6895-0006",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "TB-500",
       "Safety & Quality Concerns"
     ],
     "summary": "I would like to anecdotally relate that on two specific occasions I have utilized TB500 as an adjunct therapy for surgic...",
@@ -532,9 +500,8 @@
     "id": "FDA-2025-N-6895-0018",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "TB-500",
-      "BPC-157",
-      "Specific Drug Substance Support"
+      "Specific Drug Substance Support",
+      "Specific Drug Substance Opposition"
     ],
     "summary": "Having a 5yr open toe-wound due to partially-paralyzed legs from a back-injury and having that turn into chronic, system...",
     "sentiment": "oppose",
@@ -547,7 +514,6 @@
     "id": "FDA-2025-N-6895-0022",
     "category": "Specific Drug Substance Support",
     "tags": [
-      "BPC-157",
       "Scientific / Clinical Evidence"
     ],
     "summary": "I am a 67 year old Caucasian male.  I used a combination of BPC 157, TB 500 and GLK-CU after prostatectomy surgery in Oc...",
@@ -560,9 +526,8 @@
     "id": "FDA-2025-N-6895-0019",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "TB-500",
-      "BPC-157",
-      "Compounding Pharmacy Industry"
+      "Compounding Pharmacy Industry",
+      "Safety & Quality Concerns"
     ],
     "summary": "I have been using injectable peptides for about 2.5 years now.  They have literally changed my life.  I am a tennis play...",
     "sentiment": "support",
@@ -585,7 +550,6 @@
     "id": "FDA-2025-N-6895-0047",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "BPC-157",
       "Compounding Pharmacy Industry"
     ],
     "summary": "Currently prescribed CJC 1295, ipamorelin, TB 500, GHK-CU, and BPC 157. I am also a TRT patient. The above peptides have...",
@@ -609,9 +573,8 @@
     "id": "FDA-2025-N-6895-0023",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "TB-500",
-      "BPC-157",
-      "Specific Drug Substance Support"
+      "Specific Drug Substance Support",
+      "Regulatory Process & FDA Authority"
     ],
     "summary": "Re: Docket No. FDA-2025-N-6895 &mdash; Bulk Drug Substances for Section 503A Bulks List<br/><br/>I am a practicing physi...",
     "sentiment": "support",
@@ -624,9 +587,8 @@
     "id": "FDA-2025-N-6895-0021",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "TB-500",
-      "BPC-157",
-      "Safety & Quality Concerns"
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
     ],
     "summary": "I am writing in support of preserving a lawful, medically supervised compounding pathway for the peptide-related bulk dr...",
     "sentiment": "support",
@@ -669,7 +631,6 @@
     "id": "FDA-2025-N-6895-0033",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "TB-500",
       "Specific Drug Substance Support",
       "Scientific / Clinical Evidence"
     ],
@@ -683,9 +644,8 @@
     "id": "FDA-2025-N-6895-0032",
     "category": "Patient Access & Medical Need",
     "tags": [
-      "TB-500",
-      "BPC-157",
-      "Safety & Quality Concerns"
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
     ],
     "summary": "I&#39;ve been using peptides for about 6 months now and honestly I don&#39;t know where I&#39;d be without them. Like a...",
     "sentiment": "support",

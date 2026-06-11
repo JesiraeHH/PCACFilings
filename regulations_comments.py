@@ -184,13 +184,11 @@ def categorize_comments(comments):
         sorted_cats = sorted(scores, key=scores.get, reverse=True)
         tags = [c for c in sorted_cats[1:3] if scores[c] > 0]
 
-        # Flag peptide mentions
+        # Flag peptide mentions (stored separately, not mixed into category tags)
         peptides_mentioned = [
             peptide for peptide, kws in PEPTIDE_KEYWORDS.items()
             if any(kw in text for kw in kws)
         ]
-        if peptides_mentioned:
-            tags = peptides_mentioned + [t for t in tags if t not in peptides_mentioned]
 
         # Sentiment
         opp_score = sum(1 for w in oppose_words if w in text)
