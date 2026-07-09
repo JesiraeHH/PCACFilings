@@ -37,7 +37,7 @@ def _api_get(url, label="request"):
     """GET with exponential backoff for rate limiting. Returns parsed JSON."""
     delay = 70
     for attempt in range(10):
-        resp = requests.get(url, timeout=30)
+        resp = requests.get(url, timeout=60)
         data = resp.json() if resp.ok else None
         if resp.status_code == 429 or (data and "error" in data):
             wait = delay * (2 ** min(attempt, 3))
@@ -78,19 +78,27 @@ def fetch_comment_detail(comment_id):
 
 
 def load_or_fetch_comments():
-    """Return list of comment dicts, using cache if available."""
+    """Return list of comment dicts, fetching only new ones if cache exists."""
+    cached = []
+    cached_ids = set()
     if CACHE_FILE.exists():
         print(f"Loading cached comments from {CACHE_FILE}", flush=True)
         with open(CACHE_FILE) as f:
-            return json.load(f)
+            cached = json.load(f)
+        cached_ids = {c["id"] for c in cached}
 
-    print("Fetching comment IDs...", flush=True)
-    ids = fetch_all_comment_ids()
-    print(f"Found {len(ids)} comments. Fetching full text...", flush=True)
+    print("Checking for new comment IDs...", flush=True)
+    all_ids = fetch_all_comment_ids()
+    new_ids = [i for i in all_ids if i not in cached_ids]
 
-    comments = []
-    for i, cid in enumerate(ids, 1):
-        print(f"  [{i}/{len(ids)}] {cid}", flush=True)
+    if not new_ids:
+        print(f"No new comments. Using {len(cached)} cached.", flush=True)
+        return cached
+
+    print(f"Fetching {len(new_ids)} new comments...", flush=True)
+    comments = list(cached)
+    for i, cid in enumerate(new_ids, 1):
+        print(f"  [{i}/{len(new_ids)}] {cid}", flush=True)
         detail = fetch_comment_detail(cid)
         attrs = detail.get("data", {}).get("attributes", {})
         comments.append({
@@ -107,8 +115,9 @@ def load_or_fetch_comments():
 
     with open(CACHE_FILE, "w") as f:
         json.dump(comments, f, indent=2)
-    print(f"Cached to {CACHE_FILE}", flush=True)
+    print(f"Saved {len(comments)} comments to cache.", flush=True)
     return comments
+
 
 
 def categorize_comments(comments):

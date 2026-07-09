@@ -23,8 +23,8 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Remove old cache so we re-fetch fresh comments
-        run: rm -f comments_cache.json categorized_cache.json
+      - name: Remove categorization cache only (keep comment cache)
+        run: rm -f categorized_cache.json
 
       - name: Run report generator
         env:
@@ -38,6 +38,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html comments_report.html
+          git add index.html comments_report.html comments_cache.json categorized_cache.json
           git diff --staged --quiet || git commit -m "Auto-update comments report $(date +'%Y-%m-%d')"
           git push
