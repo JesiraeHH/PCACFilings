@@ -11816,5 +11816,110 @@
     "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compounded peptide...",
     "sentiment": "support",
     "peptides": []
+  },
+  "FDA-2025-N-6895-0124": {
+    "id": "FDA-2025-N-6895-0124",
+    "category": "Safety & Quality Concerns",
+    "tags": [
+      "Healthcare Provider Perspective",
+      "Patient Access & Medical Need"
+    ],
+    "summary": "Please allow the use of Peptides including BPC-157, KPV, TB-500, MOTS-C, Emideltide (DSIP), Semax, and Epitalon by presc...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-0081": {
+    "id": "FDA-2025-N-6895-0081",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Scientific / Clinical Evidence",
+      "Compounding Pharmacy Industry"
+    ],
+    "summary": "I support continued evaluation of peptides such as BPC-157, KPV, TB-500, MOTS-C, Emideltide (DSIP), Semax, and Epitalon...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-0083": {
+    "id": "FDA-2025-N-6895-0083",
+    "category": "Compounding Pharmacy Industry",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Regulatory Process & FDA Authority"
+    ],
+    "summary": "To the FDA Pharmacy Compounding Advisory Committee,<br/><br/>I am submitting this comment in support of including BPC-15...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-0181": {
+    "id": "FDA-2025-N-6895-0181",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns"
+    ],
+    "summary": "I have had success with BPC-157 reducing inflammation that reduced my pain greatly. Collagen and other items have not he...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-0189": {
+    "id": "FDA-2025-N-6895-0189",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Scientific / Clinical Evidence",
+      "Safety & Quality Concerns"
+    ],
+    "summary": "Absolutely. Here&rsquo;s the clean, copyable version with the individual component dosing included.<br/><br/>I am submit...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-0212": {
+    "id": "FDA-2025-N-6895-0212",
+    "category": "Other / General Comment",
+    "tags": [],
+    "summary": "Rethink the decision and how it will impact the public who use them",
+    "sentiment": "neutral",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-0231": {
+    "id": "FDA-2025-N-6895-0231",
+    "category": "Specific Drug Substance Support",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Patient Access & Medical Need"
+    ],
+    "summary": "My name is Dale Strnad. I own a couple small companies. My background is science. Entomology. Purdue University and WSU....",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-0233": {
+    "id": "FDA-2025-N-6895-0233",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "Please allow peptides to be safe and accessible to everyone.  I have personally used some of these you are considering....",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-0238": {
+    "id": "FDA-2025-N-6895-0238",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns"
+    ],
+    "summary": "These peptides are incredibly helpful and safe. You are not helping anyone by restricting this access. Please take a clo...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-0241": {
+    "id": "FDA-2025-N-6895-0241",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Economic & Market Impact",
+      "Safety & Quality Concerns"
+    ],
+    "summary": "I work in healthcare. I have seen the steady slant of choosing money over people in the pharmaceutical industry. There a...",
+    "sentiment": "support",
+    "peptides": []
   }
 }
