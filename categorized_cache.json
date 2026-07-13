@@ -11921,5 +11921,267 @@
     "summary": "I work in healthcare. I have seen the steady slant of choosing money over people in the pharmaceutical industry. There a...",
     "sentiment": "support",
     "peptides": []
+  },
+  "FDA-2025-N-6895-1776": {
+    "id": "FDA-2025-N-6895-1776",
+    "category": "Patient Access & Medical Need",
+    "tags": [],
+    "summary": "Peptides have literally changed my life for the better.  At 50 years old I feel better than I did in my 30s",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1785": {
+    "id": "FDA-2025-N-6895-1785",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I support preserving patient access to safe, regulated compounded peptides through licensed compounding pharmacies. Thes...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1787": {
+    "id": "FDA-2025-N-6895-1787",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compounded peptide...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1743": {
+    "id": "FDA-2025-N-6895-1743",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compounded peptide...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1746": {
+    "id": "FDA-2025-N-6895-1746",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing in support of preserving a responsible, physician-supervised path for access to compounded therapeutic pept...",
+    "sentiment": "oppose",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1750": {
+    "id": "FDA-2025-N-6895-1750",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Regulatory Process & FDA Authority"
+    ],
+    "summary": "As a licensed naturopathic practitioner who has worked in the wellness and functional medicine space for the past 16 yea...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1773": {
+    "id": "FDA-2025-N-6895-1773",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compounded peptide...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1767": {
+    "id": "FDA-2025-N-6895-1767",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compounded peptide...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1768": {
+    "id": "FDA-2025-N-6895-1768",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Specific Drug Substance Support",
+      "Safety & Quality Concerns"
+    ],
+    "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides that can only be considered...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1783": {
+    "id": "FDA-2025-N-6895-1783",
+    "category": "Patient Access & Medical Need",
+    "tags": [],
+    "summary": "I love ellie md.  People all across the world need this, need access to this. People have a chance at bettering their li...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1738": {
+    "id": "FDA-2025-N-6895-1738",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compounded peptide...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1784": {
+    "id": "FDA-2025-N-6895-1784",
+    "category": "Safety & Quality Concerns",
+    "tags": [
+      "Patient Access & Medical Need",
+      "Compounding Pharmacy Industry"
+    ],
+    "summary": "We need choices in our personal health care journeys and unfortunately the pharmaceutical companies, at best, limit thes...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1747": {
+    "id": "FDA-2025-N-6895-1747",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Regulatory Process & FDA Authority"
+    ],
+    "summary": "See attached comment from Elysium Health, Inc.",
+    "sentiment": "neutral",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1754": {
+    "id": "FDA-2025-N-6895-1754",
+    "category": "Regulatory Process & FDA Authority",
+    "tags": [],
+    "summary": "Public comment from Peppies, an independent peptide-education resource &mdash; full comment attached.",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1503": {
+    "id": "FDA-2025-N-6895-1503",
+    "category": "Regulatory Process & FDA Authority",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "This FDA power play and federal government overreach is nothing short of &quot;tyrannical &quot;. We all have seen scads...",
+    "sentiment": "neutral",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1416": {
+    "id": "FDA-2025-N-6895-1416",
+    "category": "Regulatory Process & FDA Authority",
+    "tags": [
+      "Patient Access & Medical Need",
+      "Safety & Quality Concerns"
+    ],
+    "summary": "Support Regulated Access to Compounded Peptides (Docket No. FDA-2025-N-6895)<br/><br/>I am writing to urge the committee...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1512": {
+    "id": "FDA-2025-N-6895-1512",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compounded peptide...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1420": {
+    "id": "FDA-2025-N-6895-1420",
+    "category": "Safety & Quality Concerns",
+    "tags": [
+      "Specific Drug Substance Support",
+      "Patient Access & Medical Need"
+    ],
+    "summary": "I am writing in the hope that the committee allows peptides to be manufactured fired and regulated by local compounding...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1516": {
+    "id": "FDA-2025-N-6895-1516",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compounded peptide...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1462": {
+    "id": "FDA-2025-N-6895-1462",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing to support the safe use and manufacturing of the peptides in America that you are considering. I have perso...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1486": {
+    "id": "FDA-2025-N-6895-1486",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Compounding Pharmacy Industry"
+    ],
+    "summary": "I am writing to urge the committee to protect safe, regulated access to compounded peptide therapies.<br/><br/>My suppor...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1381": {
+    "id": "FDA-2025-N-6895-1381",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "The American people deserve peptides that live up to American health and safety standards. Peptides are healing people a...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1399": {
+    "id": "FDA-2025-N-6895-1399",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Compounding Pharmacy Industry"
+    ],
+    "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compounded peptide...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1454": {
+    "id": "FDA-2025-N-6895-1454",
+    "category": "Other / General Comment",
+    "tags": [],
+    "summary": "Drugs",
+    "sentiment": "neutral",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1405": {
+    "id": "FDA-2025-N-6895-1405",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compounded peptide...",
+    "sentiment": "support",
+    "peptides": []
   }
 }
