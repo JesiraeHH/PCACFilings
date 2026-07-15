@@ -12491,5 +12491,46 @@
     "summary": "I am currently lying sick in bed with some awful gut/ intestinal infection after being on &ldquo; Ellemd &ldquo; glp, b1...",
     "sentiment": "support",
     "peptides": []
+  },
+  "FDA-2025-N-6895-1818": {
+    "id": "FDA-2025-N-6895-1818",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing to support access regulated compounded peptides for patients and medical professionals.<br/><br/>It&rsquo;s...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1831": {
+    "id": "FDA-2025-N-6895-1831",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am a physician writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compou...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1836": {
+    "id": "FDA-2025-N-6895-1836",
+    "category": "Compounding Pharmacy Industry",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Patient Access & Medical Need"
+    ],
+    "summary": "I have taken Tesamorelin/ KPV for 5 weeks now from a compounding pharmacy for an inflammatory condition called Pyoderma...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1841": {
+    "id": "FDA-2025-N-6895-1841",
+    "category": "Economic & Market Impact",
+    "tags": [],
+    "summary": "I don&rsquo;t want peptides to be overpriced I would like for them to be at their value.",
+    "sentiment": "support",
+    "peptides": []
   }
 }
