@@ -12707,5 +12707,183 @@
     "summary": "My health depends on these peptides. Please approve them.",
     "sentiment": "support",
     "peptides": []
+  },
+  "FDA-2025-N-6895-1763": {
+    "id": "FDA-2025-N-6895-1763",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compounded peptide...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1771": {
+    "id": "FDA-2025-N-6895-1771",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Specific Drug Substance Support",
+      "Economic & Market Impact"
+    ],
+    "summary": "A year and a half ago, I sat in my doctor&rsquo;s exam room in tears because nothing was working. I had counted calories...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1739": {
+    "id": "FDA-2025-N-6895-1739",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compounded peptide...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1788": {
+    "id": "FDA-2025-N-6895-1788",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Specific Drug Substance Support",
+      "Economic & Market Impact"
+    ],
+    "summary": "I have suffered with Lipedema most of my life and using peptides has literally changed my life. From reducing my inflamm...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1756": {
+    "id": "FDA-2025-N-6895-1756",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "Compounding peptides may provide critical benefit when treating many conditions and presentations, ranging from basic in...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1777": {
+    "id": "FDA-2025-N-6895-1777",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Scientific / Clinical Evidence",
+      "Compounding Pharmacy Industry"
+    ],
+    "summary": "As someone who suffers from a genetic condition that results in multiple chronic conditions and autoimmune conditions, I...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1748": {
+    "id": "FDA-2025-N-6895-1748",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Compounding Pharmacy Industry"
+    ],
+    "summary": "Compounding absolutely helps make these medicines affordable. Trusted pharmacies are able to verify sources for reliable...",
+    "sentiment": "neutral",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1752": {
+    "id": "FDA-2025-N-6895-1752",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compounded peptide...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1766": {
+    "id": "FDA-2025-N-6895-1766",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Regulatory Process & FDA Authority",
+      "Compounding Pharmacy Industry"
+    ],
+    "summary": "Comment on Docket FDA-2025-N-6895 &mdash; Support for Inclusion of KPV, TB-500, and BPC-157 on the Section 503A Bulk Dru...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1778": {
+    "id": "FDA-2025-N-6895-1778",
+    "category": "Other / General Comment",
+    "tags": [],
+    "summary": "See attached file(s)",
+    "sentiment": "neutral",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1770": {
+    "id": "FDA-2025-N-6895-1770",
+    "category": "Regulatory Process & FDA Authority",
+    "tags": [],
+    "summary": "Dr. Pradeep Albert White Paper: A Regulatory Framework for the Approval of Peptide Therapeutics",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1740": {
+    "id": "FDA-2025-N-6895-1740",
+    "category": "Other / General Comment",
+    "tags": [],
+    "summary": "See attached file(s)",
+    "sentiment": "neutral",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1758": {
+    "id": "FDA-2025-N-6895-1758",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "Over the past year, I have  almost completely eliminated the following conditions using peptides. Obesity, high blood pr...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1753": {
+    "id": "FDA-2025-N-6895-1753",
+    "category": "Safety & Quality Concerns",
+    "tags": [
+      "Specific Drug Substance Support",
+      "Compounding Pharmacy Industry"
+    ],
+    "summary": "As a physician practicing over 30 years, I am writing to strongly support the inclusion of BPC-157, KPV, TB-500, MOTS-c,...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1769": {
+    "id": "FDA-2025-N-6895-1769",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compounded peptide...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1762": {
+    "id": "FDA-2025-N-6895-1762",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compounded peptide...",
+    "sentiment": "support",
+    "peptides": []
+  },
+  "FDA-2025-N-6895-1765": {
+    "id": "FDA-2025-N-6895-1765",
+    "category": "Patient Access & Medical Need",
+    "tags": [
+      "Safety & Quality Concerns",
+      "Specific Drug Substance Support"
+    ],
+    "summary": "I am writing to support patient and physician access to safe, regulated compounded peptides.<br/><br/>Compounded peptide...",
+    "sentiment": "support",
+    "peptides": []
   }
 }
